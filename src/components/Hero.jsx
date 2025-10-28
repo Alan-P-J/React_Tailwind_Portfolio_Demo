@@ -4,7 +4,7 @@ import { FaEnvelope } from 'react-icons/fa';
 
 const MinimalHeroSection = forwardRef((props,ref) => {
   const scrollToProjects = () => {
-    const projectsSection = document.getElementById('projects');
+    const projectsSection = document.getElementById('project');
     if (projectsSection) {
       projectsSection.scrollIntoView({ behavior: 'smooth' });
     }
@@ -37,7 +37,7 @@ const ScrollToEmail = () => {
 
       <div className="flex-1 text-center lg:text-left">
         <h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-          Alan P J
+          Alan P Jlg:justify-start"
         </h1>
 
         <h2 className="mb-6 text-2xl font-semibold text-[#0767ac] md:text-3xl">
@@ -48,13 +48,13 @@ const ScrollToEmail = () => {
           Building digital experiences with modern web technologies. 
           Specializing in React, Springboot, and cloud-native applications.
         </p>
-      <div className="flex gap-5 buttons">
+      <div className="flex justify-center gap-5 text-sm buttons md:text-base">
         <button
           onClick={scrollToProjects}
           className="projects relative overflow-hidden flex duration-500 items-center gap-2 px-8 py-3 font-semibold text-[#0767ac] border border-[#0767ac] rounded-lg cursor-pointer transition-all  lg:mx-0 max-md:mb-7.5 group"
           >
             <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
-                        View My Projects
+              View My Projects
             </span>
           <FaArrowRight />
         </button>
