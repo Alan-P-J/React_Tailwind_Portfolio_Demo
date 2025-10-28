@@ -92,7 +92,7 @@ const toggleDarkMode = () => {
               className={` px-4 py-2 mr-4 font-semibold cursor-pointer border-none no-underline duration-500 border hover:border-blue-600 rounded-2xl hover:bg-blue-400  ${
                 activeSection === section
                   ? "text-blue-400 active"
-                  : " dark:text-white text-black hover:bg-gray-200 "
+                  : " dark:md:text-gray-700 text-gray-800 dark:text-white md:text-white hover:bg-gray-200 "
               }
               `}
               onClick={() =>{

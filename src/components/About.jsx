@@ -4,17 +4,10 @@ import { SiSpringboot, SiReact, SiMongodb } from 'react-icons/si';
 
 const AboutMe = forwardRef((props,ref) => 
 {
-  const hobbies = [
-    { icon: FaCoffee, label: 'Coffee Connoisseur' },
-    { icon: FaMusic, label: 'Music Production' },
-    { icon: FaGamepad, label: 'Gaming' },
-    { icon: FaHiking, label: 'Hiking' }
-  ];
-
-
+ 
 
   return (
-    <section ref={ref} id="about" className="bg-white py-26 dark:bg-gray-900">
+    <section ref={ref} id="about" className="bg-white md:pt-33 py-26 dark:bg-gray-900">
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-16 text-center">
@@ -53,17 +46,17 @@ const AboutMe = forwardRef((props,ref) =>
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-gray-600 dark:text-gray-400">Location:</span>
-                  <span className="font-medium text-gray-900 dark:text-white">Kerala, India</span>
+                  <span className="font-medium text-gray-900 dark:text-white">Thrissur, Kerala, India</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600 dark:text-gray-400">Email:</span>
-                  <span className="font-medium text-blue-600">alan@example.com</span>
+                  <span className="font-medium text-blue-600">alanpjpnc@gmail.com.com</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-400">Status:</span>
+                  <span className="text-gray-600 dark:text-gray-400">Language:</span>
                   <span className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className="font-medium text-gray-900 dark:text-white">Open to work</span>
+                    {/* <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div> */}
+                    <span className="font-medium text-gray-900 dark:text-white">English, Malayalam, Hindi</span>
                   </span>
                 </div>
               </div>
@@ -79,29 +72,25 @@ const AboutMe = forwardRef((props,ref) =>
               </h3>
               
               <div className="space-y-4 leading-relaxed text-gray-600 dark:text-gray-300">
-                <p>
-                  I'm a passionate Full-Stack Developer who discovered my love for coding 
-                  through a non-traditional path. Originally from a different field, I found 
-                  myself constantly drawn to problem-solving and creative expression through 
-                  technology.
-                </p>
-                
-                <p>
-                  What drives me is the ability to transform complex ideas into elegant, 
-                  user-friendly applications. I believe that great software should not only 
-                  function flawlessly but also provide an exceptional user experience.
-                </p>
+  <p>
+    I'm a passionate Full-Stack Developer who transitioned from a different field, 
+    discovering my love for coding through problem-solving and creative exploration.
+    </p>
+  <p>
+    Over the past year, I've honed my skills in technologies like React, Spring Boot, 
+    and Mysql, building projects that range from web applications to APIs.
+  </p>
+  <p>
+    I enjoy turning complex ideas into elegant, user-friendly applications that 
+    balance functionality with great design.
+    My focus is on building scalable, maintainable systems where thoughtful design 
+    meets strong engineering.
+  </p>
+</div>
 
-                <p>
-                  My passion lies in building scalable, maintainable systems that make a 
-                  real difference in people's lives. I'm particularly fascinated by the 
-                  intersection of design and engineering, where beautiful interfaces meet 
-                  robust backend architecture.
-                </p>
-              </div>
             </div>
-
-            {/* Technical Philosophy */}
+{/* 
+            Technical Philosophy
             <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl">
               <div className="flex items-center gap-3 mb-4">
                 <FaCode className="text-xl text-blue-600" />
@@ -136,39 +125,17 @@ const AboutMe = forwardRef((props,ref) =>
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
 
-            {/* Hobbies & Interests */}
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <FaHeart className="text-xl text-red-500" />
-                <h4 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  Beyond Coding
-                </h4>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                {hobbies.map((hobby, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-3 p-4 transition-colors duration-300 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20"
-                  >
-                    <hobby.icon className="text-lg text-blue-600" />
-                    <span className="font-medium text-gray-700 dark:text-gray-300">
-                      {hobby.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
+           
 
             {/* Current Focus */}
-            <div className="pl-4 border-l-4 border-blue-600">
+            {/* <div className="pl-4 border-l-4 border-blue-600">
               <p className="italic text-gray-600 dark:text-gray-300">
                 "Currently exploring microservices architecture and deepening my knowledge 
                 in cloud-native development while contributing to open-source projects."
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

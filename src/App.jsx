@@ -8,6 +8,8 @@ import ToTop from './components/ToTop';
 import Skills from './components/Skills';
 import HeroSection from './components/herodemo';
 import Projects from './components/Projects';
+import Contact from './components/Contact';
+
 function App() {
 const [activeSection, setActiveSection] = useState('home');
 const sectionRefs = {
@@ -16,11 +18,11 @@ const sectionRefs = {
   skills: useRef(null),
   services: useRef(null),
   contact: useRef(null),
+  projects: useRef(null),
 };
 const [isVisible, setIsVisible] = useState(null);
 
 useEffect(() => {
-  window.scrollTo(0, 0);
     const handleScroll = () => {
 
       if (window.scrollY>100) {
@@ -72,11 +74,10 @@ useEffect(() => {
       <Hero ref={sectionRefs.home}/>
       <About ref={sectionRefs.about}/>
       <Skills ref={sectionRefs.skills}></Skills>
-      <Projects></Projects>
+      <Projects ref={sectionRefs.projects}></Projects>
+      <Contact></Contact>
       {isVisible&&
       <ToTop></ToTop>}
-
-      <HeroSection></HeroSection>
     </>
   )
 }

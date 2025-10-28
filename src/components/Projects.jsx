@@ -78,7 +78,7 @@ const Projects = forwardRef((props,ref) => {
   ];
 
   return (
-    <section ref={ref} id="projects" className="py-20 bg-white dark:bg-gray-900">
+    <section ref={ref} id="project" className="py-20 bg-white pt-33 dark:bg-gray-900">
       <div className="container px-4 mx-auto">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-4xl font-bold text-gray-900 dark:text-white">My Projects</h2>

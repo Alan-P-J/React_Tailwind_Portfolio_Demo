@@ -9,9 +9,17 @@ const MinimalHeroSection = forwardRef((props,ref) => {
       projectsSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-
-
+const ScrollToEmail = () => {
+  console.log("scroll to email clicked");
+  const emailSection = document.getElementById("contact");
+  if (emailSection !=null) {
+    console.log("clicked");
+    emailSection.scrollIntoView({ behavior: 'smooth' });
+  }
+  else {
+    console.log("email section not found");
+  }
+}
   return (
 <section ref={ref} id='home' className="relative pt-29 md:pt-25 flex items-center justify-center min-h-screen
   bg-[linear-gradient(to_top,#cfd9df_0%,#e2ebf0_100%)] dark:bg-[#0f172a]"
@@ -50,21 +58,13 @@ const MinimalHeroSection = forwardRef((props,ref) => {
             </span>
           <FaArrowRight />
         </button>
-
-<a
-  href="mailto:alanpjpnc@gmail.com"
-  className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-white bg-[#01497c] rounded-lg hover:bg-[#0767ac] transition-colors duration-300"
-  onClick={() => {
-    // Optional: Track click analytics
-
-
-
-    console.log('Email link clicked');
-  }}
->
-  <FaEnvelope className="text-lg" />
-  Hire Me
-</a>
+        <button
+          onClick={() =>{ ScrollToEmail();}}
+          className="hire relative flex items-center overflow-hidden gap-2 px-6 py-3 font-semibold text-white bg-[#01497c] rounded-lg shadow-md hover:bg-[#0767ac] cursor-pointer transition-all duration-300 lg:mx-0 max-md:mb-7.5 group"
+        >
+        <FaEnvelope className="text-lg" />
+        Hire Me
+        </button>
         
       </div>
        
