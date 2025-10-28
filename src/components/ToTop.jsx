@@ -13,10 +13,10 @@ const ToTop = () => {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed z-50 flex items-center justify-center w-12 h-12 p-2
-     text-lg text-white transition-colors duration-300 bg-[#0767ac] 
-     rounded-full shadow-lg cursor-pointer bottom-8 right-8
-      hover:bg-gray-700 dark:bg-gray-600 dark:text-white dark:hover:bg-gray-200"
+      className="totop fixed z-50 flex items-center justify-center w-12 h-12 p-2
+     text-lg text-white transition-all duration-300 bg-[#0767ac] 
+     rounded-full shadow-lg cursor-pointer bottom-8 md:right-8  right-4
+      dark:bg-gray-600 dark:text-white"
     >
 <GoArrowUp size={23}/>
     </button>

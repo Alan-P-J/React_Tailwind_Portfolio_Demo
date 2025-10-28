@@ -23,7 +23,7 @@ useEffect(() => {
   window.scrollTo(0, 0);
     const handleScroll = () => {
 
-      if (window.scrollY>200) {
+      if (window.scrollY>100) {
         setIsVisible(true);
       }
       else  {
@@ -48,7 +48,7 @@ useEffect(() => {
       });
     },
     {
-      threshold: 0.6,
+      threshold: 0.4,
     }
   );
    Object.values(sectionRefs).forEach((ref) => {

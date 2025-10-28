@@ -109,30 +109,28 @@ const toggleDarkMode = () => {
             </a>
           ))}
         </div>
+<button
+  onClick={toggleDarkMode}
+  className="w-12 h-12 flex items-center justify-center cursor-pointer text-white bg-[#0767ac] border-none rounded-full outline-none dark:bg-gray-400 dark:text-black"
+>
+  {/* Icon Container */}
+  <div className="relative w-6 h-6">
+    {/* Light Mode Icon */}
+    <CiDark
+      className={`absolute inset-0 m-auto transition-all duration-500 transform
+        ${darkMode ? "opacity-100 rotate-0" : "opacity-0 rotate-90"}`}
+      size={25}
+    />
 
-        <button
-          onClick={toggleDarkMode}
-          className="px-3 py-2 cursor-pointer text-white bg-[#0767ac] border-none rounded-full outline-none dark:bg-gray-400 dark:text-black"
-        >
-          
-<div className="relative w-[25px] h-[25px]">
-  {/* Light Mode Icon */}
-  <CiDark
-    className={`absolute top-0 left-0 transition-all duration-500 transform
-      ${darkMode ? "opacity-100 rotate-0" : "opacity-0 rotate-90"}`}
-    size={25}
-  />
+    {/* Dark Mode Icon */}
+    <CiLight
+      className={`absolute inset-0 m-auto transition-all duration-500 transform
+        ${darkMode ? "opacity-0 -rotate-90" : "opacity-100 rotate-0"}`}
+      size={25}
+    />
+  </div>
+</button>
 
-  {/* Dark Mode Icon */}
-  <CiLight
-    className={`absolute top-0 left-0 transition-all duration-500 transform
-      ${darkMode ? "opacity-0 -rotate-90" : "opacity-100 rotate-0"}`}
-    size={25}
-  />
-</div>
-
-        
-        </button>
         {/* svg of sun in assets for light mode and moon for dark mode */}
             
         

@@ -41,7 +41,7 @@ const MinimalHeroSection = forwardRef((props,ref) => {
       <div className="flex gap-5 buttons">
         <button
           onClick={scrollToProjects}
-          className="projects relative overflow-hidden flex duration-500 items-center gap-2 px-8 py-3 mx-auto font-semibold text-[#0767ac] border border-[#0767ac] rounded-lg cursor-pointer transition-all  lg:mx-0 max-md:mb-7.5 group"
+          className="projects relative overflow-hidden flex duration-500 items-center gap-2 px-8 py-3 font-semibold text-[#0767ac] border border-[#0767ac] rounded-lg cursor-pointer transition-all  lg:mx-0 max-md:mb-7.5 group"
           >
             <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
                         View My Projects
@@ -50,11 +50,11 @@ const MinimalHeroSection = forwardRef((props,ref) => {
         </button>
         <button
           onClick={() =>{ window.open(
-    'https://mail.google.com/mail/?view=cm&fs=1&to=yourname@example.com&su=Hiring%20Inquiry&body=Hi%20Alan%2C%20I%20would%20like%20to%20discuss%20a%20project%20opportunity.',
+    'https://mail.google.com/mail/?view=cm&fs=1&to=alanpjpnc@gmail.com.com',
     '_blank'
   );
 window.location.href = 'mailto:alanpjpnc@gmail.com.com?subject=Hiring%20Inquiry&body=Hi%20Alan%2C%20I%20would%20like%20to%20discuss%20a%20project%20opportunity.'} }
-          className="hire flex items-center gap-2 px-6 py-3 font-semibold text-white bg-[#01497c] rounded-lg shadow-md hover:bg-[#0767ac] transition-all duration-300"
+          className="hire relative flex items-center overflow-hidden gap-2 px-6 py-3 font-semibold text-white bg-[#01497c] rounded-lg shadow-md hover:bg-[#0767ac] cursor-pointer transition-all duration-300 lg:mx-0 max-md:mb-7.5 group"
         >
         <FaEnvelope className="text-lg" />
         Hire Me
