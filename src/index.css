@@ -17,33 +17,42 @@
   -moz-osx-font-smoothing: grayscale;
 }
 /* Assuming your dark mode adds a `.dark` class to <html> or <body> */
-a:not(.active):hover {
+header a:not(.active):hover {
   border-color: white;
+  color:#1E90FF;
 }
 
-.dark a:not(.active):hover {
+header .dark a:not(.active):hover {
   border-color: #fbbf24; /* amber */
 }
 
-
+a .active {
+  font-weight: 800;
+  color: #1E90FF;
+}
 a {
   font-weight: 500;
   text-decoration: inherit;
 }
 
-#home a:hover{
-  border-color: black;
+.demo{
+
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-style: normal;
 }
+
+
 body {
   /* margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;*/
-/* background: #2c3e50; 
-background: -webkit-linear-gradient(to right, #3498db, #2c3e50); 
-background: linear-gradient(to right, #3498db, #2c3e50);  */
+/* background: #3498db; */
+/* background: -webkit-linear-gradient(to right, #3498db, #2c3e50); 
+background: linear-gradient(to right, #3498db, #2c3e50);   */
   min-height: 100vh; 
-  font-family: "Noto Sans", sans-serif;
+font-family: "Montserrat", sans-serif;
   font-waight: 800;
   font-style: normal;
   font-size: 16px;
@@ -54,7 +63,13 @@ h1 {
   line-height: 1.1;
 }
 
-
+#home .projects:hover {
+  background-color: #0767ac;
+  color: white;
+}
+#home .hire:hover{
+  background-color: #0767ac;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

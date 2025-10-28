@@ -1,14 +1,179 @@
 import React, { forwardRef } from 'react';
+import { FaCode, FaHeart, FaCoffee, FaMusic, FaGamepad, FaHiking } from 'react-icons/fa';
+import { SiSpringboot, SiReact, SiMongodb } from 'react-icons/si';
 
-const About = forwardRef((props, ref) => (
-  <section
-    id="about"
-    ref={ref}
-    className="flex items-center justify-center h-screen text-black transition-colors duration-500 dark:bg-transparent dark:text-white"
-  >
-    <h1 className="text-4xl">About</h1>
-    <p>edbegrtbgertbrtbgrthbrth</p>
-  </section>
-));
+const AboutMe = forwardRef((props,ref) => 
+{
+  const hobbies = [
+    { icon: FaCoffee, label: 'Coffee Connoisseur' },
+    { icon: FaMusic, label: 'Music Production' },
+    { icon: FaGamepad, label: 'Gaming' },
+    { icon: FaHiking, label: 'Hiking' }
+  ];
 
-export default About;
+
+
+  return (
+    <section ref={ref} id="about" className="bg-white py-26 dark:bg-gray-900">
+      <div className="container px-4 mx-auto sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
+            About Me
+          </h2>
+          <div className="w-24 h-1 mx-auto bg-blue-600"></div>
+        </div>
+
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+          {/* Left Column - Image and Personal Info */}
+          <div className="space-y-8">
+            {/* Profile Image */}
+            <div className="relative">
+              <div className="mx-auto w-80 h-80 lg:mx-0">
+                <div className="absolute inset-0 transform scale-105 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl rotate-6"></div>
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+                  alt="Alan P J"
+                  className="relative z-10 object-cover w-full h-full shadow-2xl rounded-2xl"
+                />
+              </div>
+              
+              {/* Floating Experience Badge */}
+              <div className="absolute p-4 bg-white shadow-xl -bottom-4 -right-4 dark:bg-gray-800 rounded-2xl">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-blue-600">1+</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Year Experience</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Info */}
+            <div className="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">
+              <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">Quick Facts</h3>
+              <div className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-gray-600 dark:text-gray-400">Location:</span>
+                  <span className="font-medium text-gray-900 dark:text-white">Kerala, India</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600 dark:text-gray-400">Email:</span>
+                  <span className="font-medium text-blue-600">alan@example.com</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600 dark:text-gray-400">Status:</span>
+                  <span className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="font-medium text-gray-900 dark:text-white">Open to work</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - Bio and Details */}
+          <div className="space-y-8">
+            {/* Main Bio */}
+            <div>
+              <h3 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
+                My Journey in Tech
+              </h3>
+              
+              <div className="space-y-4 leading-relaxed text-gray-600 dark:text-gray-300">
+                <p>
+                  I'm a passionate Full-Stack Developer who discovered my love for coding 
+                  through a non-traditional path. Originally from a different field, I found 
+                  myself constantly drawn to problem-solving and creative expression through 
+                  technology.
+                </p>
+                
+                <p>
+                  What drives me is the ability to transform complex ideas into elegant, 
+                  user-friendly applications. I believe that great software should not only 
+                  function flawlessly but also provide an exceptional user experience.
+                </p>
+
+                <p>
+                  My passion lies in building scalable, maintainable systems that make a 
+                  real difference in people's lives. I'm particularly fascinated by the 
+                  intersection of design and engineering, where beautiful interfaces meet 
+                  robust backend architecture.
+                </p>
+              </div>
+            </div>
+
+            {/* Technical Philosophy */}
+            <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl">
+              <div className="flex items-center gap-3 mb-4">
+                <FaCode className="text-xl text-blue-600" />
+                <h4 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  Technical Philosophy
+                </h4>
+              </div>
+              
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-2 h-2 mt-2 bg-blue-600 rounded-full"></div>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    <strong>Clean Code:</strong> Writing maintainable, readable code that stands the test of time
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-2 h-2 mt-2 bg-blue-600 rounded-full"></div>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    <strong>User-Centric Design:</strong> Building applications with the end-user always in mind
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-2 h-2 mt-2 bg-blue-600 rounded-full"></div>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    <strong>Performance First:</strong> Optimizing for speed and efficiency at every level
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-2 h-2 mt-2 bg-blue-600 rounded-full"></div>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    <strong>Continuous Learning:</strong> Staying current with emerging technologies and best practices
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Hobbies & Interests */}
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <FaHeart className="text-xl text-red-500" />
+                <h4 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  Beyond Coding
+                </h4>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                {hobbies.map((hobby, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 p-4 transition-colors duration-300 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20"
+                  >
+                    <hobby.icon className="text-lg text-blue-600" />
+                    <span className="font-medium text-gray-700 dark:text-gray-300">
+                      {hobby.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Current Focus */}
+            <div className="pl-4 border-l-4 border-blue-600">
+              <p className="italic text-gray-600 dark:text-gray-300">
+                "Currently exploring microservices architecture and deepening my knowledge 
+                in cloud-native development while contributing to open-source projects."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+});
+
+export default AboutMe;
