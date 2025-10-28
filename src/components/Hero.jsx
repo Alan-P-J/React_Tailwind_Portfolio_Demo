@@ -49,11 +49,8 @@ const MinimalHeroSection = forwardRef((props,ref) => {
           <FaArrowRight />
         </button>
         <button
-          onClick={() =>{ window.open(
-    'https://mail.google.com/mail/?view=cm&fs=1&to=alanpjpnc@gmail.com.com',
-    '_blank'
-  );
-window.location.href = 'mailto:alanpjpnc@gmail.com.com?subject=Hiring%20Inquiry&body=Hi%20Alan%2C%20I%20would%20like%20to%20discuss%20a%20project%20opportunity.'} }
+          onClick={() =>{ 
+window.location.href = 'mailto:alanpjpnc@gmail.com?subject=Hiring%20Inquiry&body=Hi%20Alan%2C%20I%20would%20like%20to%20discuss%20a%20project%20opportunity.'} }
           className="hire relative flex items-center overflow-hidden gap-2 px-6 py-3 font-semibold text-white bg-[#01497c] rounded-lg shadow-md hover:bg-[#0767ac] cursor-pointer transition-all duration-300 lg:mx-0 max-md:mb-7.5 group"
         >
         <FaEnvelope className="text-lg" />
