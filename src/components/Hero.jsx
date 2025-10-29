@@ -75,13 +75,13 @@ const ScrollToEmail = () => {
 
       {/* Profile Image */}
       <div className="flex justify-center flex-1">
-        <div className="experience">
+        {/* <div className="experience">
             <div className="absolute bg-[#0767ac] rounded-full -top-[3%] md:-top-[9%] right-[17%] md:right-[11%]">
               <div className="p-4 text-white rounded-t-lg">
                 <span>1+ year</span>
               </div>
               </div>
-        </div>
+        </div> */}
          <div className="visible absolute p-3 bg-white rounded-full top-[35%] left-[12%] md:invisible md:left-0 md:right">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>

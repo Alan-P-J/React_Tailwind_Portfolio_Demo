@@ -32,7 +32,7 @@ const AboutMe = forwardRef((props,ref) =>
               </div>
               
               {/* Floating Experience Badge */}
-              <div className="absolute p-4 bg-white shadow-xl -bottom-4 -right-4 dark:bg-gray-800 rounded-2xl">
+              <div className="absolute z-10 p-4 bg-white shadow-xl -bottom-4 -right-4 dark:bg-gray-800 rounded-2xl">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-blue-600">1+</div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">Year Experience</div>
