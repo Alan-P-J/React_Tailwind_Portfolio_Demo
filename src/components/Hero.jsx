@@ -21,14 +21,15 @@ const ScrollToEmail = () => {
   }
 }
   return (
-<section ref={ref} id='home' className="relative pt-29 md:pt-25 flex items-center justify-center min-h-screen
-  bg-[linear-gradient(to_top,#cfd9df_0%,#e2ebf0_100%)] dark:bg-[#0f172a]"
+<section
+  ref={ref}
+  id="home"
+  className="relative pt-28 md:pt-24 flex items-center justify-center min-h-screen bg-[linear-gradient(to_top,#cfd9df_0%,#e2ebf0_100%)]  dark:bg-[radial-gradient(125%_125%_at_50%_90%,_#000000_40%,_#0d1a36_100%)]"
 >
-
   <div
-    className="absolute inset-0 z-0 hidden dark:block"
+    className="absolute inset-0 z-0 hidden bg-none dark:block dark:bg-gray-900"
     style={{
-      background: "radial-gradient(125% 125% at 50% 90%, #000000 40%, #0d1a36 100%)",
+      background: "transition-colors duration-700 transition-colors duration-700",
     }}
   />
 
@@ -37,7 +38,7 @@ const ScrollToEmail = () => {
 
       <div className="flex-1 text-center lg:text-left">
         <h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-          Alan P Jlg:justify-start"
+          Alan P J
         </h1>
 
         <h2 className="mb-6 text-2xl font-semibold text-[#0767ac] md:text-3xl">
@@ -48,7 +49,7 @@ const ScrollToEmail = () => {
           Building digital experiences with modern web technologies. 
           Specializing in React, Springboot, and cloud-native applications.
         </p>
-      <div className="flex justify-center gap-5 text-sm buttons md:text-base">
+      <div className="flex gap-5 text-sm buttons md:text-base">
         <button
           onClick={scrollToProjects}
           className="projects relative overflow-hidden flex duration-500 items-center gap-2 px-8 py-3 font-semibold text-[#0767ac] border border-[#0767ac] rounded-lg cursor-pointer transition-all  lg:mx-0 max-md:mb-7.5 group"

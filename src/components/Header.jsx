@@ -86,12 +86,12 @@ const toggleDarkMode = () => {
   dark:text-white`}
 >
             
-          {["home", "about", "projects", "skills"].map((section) => (
+          {["home", "about",  "skills", "project", "contact"].map((section) => (
             <a
               key={section}
               className={` px-4 py-2 mr-4 font-semibold cursor-pointer border-none no-underline duration-500 border hover:border-blue-600 rounded-2xl hover:bg-blue-400  ${
                 activeSection === section
-                  ? "text-blue-400 active"
+                  ? "text-blue-500 active"
                   : " dark:md:text-gray-700 text-gray-800 dark:text-white md:text-white hover:bg-gray-200 "
               }
               `}
@@ -121,7 +121,6 @@ const toggleDarkMode = () => {
         ${darkMode ? "opacity-100 rotate-0" : "opacity-0 rotate-90"}`}
       size={25}
     />
-
     {/* Dark Mode Icon */}
     <CiLight
       className={`absolute inset-0 m-auto transition-all duration-500 transform

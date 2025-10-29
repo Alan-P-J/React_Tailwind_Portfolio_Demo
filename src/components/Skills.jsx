@@ -32,8 +32,8 @@ const SkillsAndServices = forwardRef((props,ref) => {
   return (
     <section
     ref={ref}
-      id="skills-services"
-      className="py-20 transition-colors duration-300 md:pt-33 bg-gray-50 dark:bg-gray-900"
+      id="skills"
+      className="transition-colors duration-300 bg-gray-100 py-26 md:pt-33 dark:bg-gray-900"
     >
       <div className="container px-4 mx-auto">
         {/* Header */}
@@ -51,18 +51,18 @@ const SkillsAndServices = forwardRef((props,ref) => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="p-8 transition-shadow duration-300 bg-white shadow-lg dark:bg-gray-800 rounded-2xl hover:shadow-xl"
+              className="p-8 transition-all duration-500 bg-white shadow-lg skills dark:bg-gray-800 rounded-2xl hover:shadow-xl"
             >
               <div className="flex items-center gap-4 mb-5">
-                <div className="p-3 text-blue-600 bg-blue-100 rounded-lg dark:bg-blue-900 dark:text-blue-400">
+                <div className="p-3 text-blue-600 duration-500 bg-blue-100 rounded-lg dark:bg-blue-900 dark:text-blue-400">
                   <service.icon size={26} />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                <h3 className="text-xl font-semibold text-gray-900 duration-500 dark:text-white">
                   {service.title}
                 </h3>
               </div>
 
-              <p className="mb-5 text-gray-600 dark:text-gray-400">
+              <p className="mb-5 text-gray-600 duration-500 dark:text-gray-400">
                 {service.description}
               </p>
 
@@ -70,7 +70,7 @@ const SkillsAndServices = forwardRef((props,ref) => {
                 {service.technologies.map((tech, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1 text-sm font-medium text-[#0767ac] bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300"
+                    className="px-3 py-1 text-sm font-medium text-[#0767ac] bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300 duration-500"
                   >
                     {tech}
                   </span>

@@ -1,10 +1,12 @@
 import React, { useState, useRef, forwardRef } from 'react';
 import emailjs from 'emailjs-com';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaPaperPlane, FaCheck, FaExclamationTriangle } from 'react-icons/fa';
 const ContactSection = forwardRef((props,ref) => {
   const formRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(''); // 'success', 'error', ''
+
 
   const contactMethods = [
     {
@@ -34,13 +36,13 @@ const ContactSection = forwardRef((props,ref) => {
     {
       icon: FaGithub,
       label: 'GitHub',
-      link: 'https://github.com/alanpj',
+      link: 'https://github.com/Alan-P-J',
       color: 'hover:text-gray-800 dark:hover:text-white'
     },
     {
       icon: FaLinkedin,
       label: 'LinkedIn',
-      link: 'https://linkedin.com/in/alanpj',
+      link: 'https://www.linkedin.com/in/alan-p-j-5747a1247/',
       color: 'hover:text-blue-600'
     }
   ];
@@ -48,7 +50,6 @@ const ContactSection = forwardRef((props,ref) => {
   const sendEmail = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus('');
 
     emailjs
       .sendForm(
@@ -61,27 +62,25 @@ const ContactSection = forwardRef((props,ref) => {
         (result) => {
           console.log('Email sent successfully:', result.text);
           setIsSubmitting(false);
-          setSubmitStatus('success');
-          
+
+          toast.success("Email sent successfully!");
           // Reset form
           formRef.current.reset();
           
           // Reset status after 5 seconds
-          setTimeout(() => setSubmitStatus(''), 5000);
         },
         (error) => {
           console.error('Email failed to send:', error.text);
           setIsSubmitting(false);
-          setSubmitStatus('error');
-          
+
+          toast.error("Something went wrong!");
           // Reset status after 5 seconds
-          setTimeout(() => setSubmitStatus(''), 5000);
         }
       );
   };
 
   return (
-    <section ref={ref} id="contact" className="py-20 md:pt-29 bg-gray-50 dark:bg-gray-900">
+    <section ref={ref} id="contact" className="bg-gray-100 py-26 md:pt-33 dark:bg-gray-900">
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-16 text-center">
@@ -107,30 +106,38 @@ const ContactSection = forwardRef((props,ref) => {
               </p>
             </div>
 
-            {/* Contact Methods */}
-            <div className="space-y-6">
-              {contactMethods.map((method, index) => (
-                <a
-                  key={index}
-                  href={method.link}
-                  target={method.link.startsWith('http') ? '_blank' : '_self'}
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 transition-all duration-300 bg-white dark:bg-gray-800 rounded-xl hover:shadow-lg hover:-translate-y-1 group"
-                >
-                  <div className={`p-3 rounded-lg bg-gray-100 dark:bg-gray-700 group-hover:scale-110 transition-transform duration-300 ${method.color}`}>
-                    <method.icon size={20} />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900 dark:text-white">
-                      {method.label}
-                    </div>
-                    <div className="text-gray-600 dark:text-gray-400">
-                      {method.value}
-                    </div>
-                  </div>
-                </a>
-              ))}
-            </div>
+
+            {/* Redesigned Contact Methods */}
+<div className="grid gap-6 sm:grid-cols-2">
+  {contactMethods.map((method, index) => (
+    <a
+      key={index}
+      href={method.link}
+      target={method.link.startsWith('http') ? '_blank' : '_self'}
+      rel="noopener noreferrer"
+      className="relative flex flex-col items-center justify-center p-6 text-center transition-all duration-300 bg-white shadow-md dark:bg-gray-800 rounded-2xl hover:shadow-2xl hover:-translate-y-1 group"
+    >
+      {/* Icon Circle */}
+      <div
+        className={`flex items-center justify-center w-14 h-14 mb-4 rounded-full bg-gradient-to-tr from-blue-500 to-${method.color.replace('text-', '')} dark:from-gray-700 dark:to-gray-600 text-white shadow-md group-hover:scale-110 transition-transform`}
+      >
+        <method.icon size={24} />
+      </div>
+
+      {/* Text Info */}
+      <div>
+        <h5 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
+          {method.label}
+        </h5>
+        <p className="text-gray-600 dark:text-gray-400">{method.value}</p>
+      </div>
+
+      {/* Hover Glow Border */}
+      <div className="absolute inset-0 transition-colors border border-transparent rounded-2xl group-hover:border-blue-500"></div>
+    </a>
+  ))}
+</div>
+
 
             {/* Social Links */}
             <div>
@@ -154,7 +161,7 @@ const ContactSection = forwardRef((props,ref) => {
             </div>
 
             {/* Availability Status */}
-            <div className="p-4 border border-green-200 bg-green-50 dark:bg-green-900/20 rounded-xl dark:border-green-800">
+            {/* <div className="p-4 border border-green-200 bg-green-50 dark:bg-green-900/20 rounded-xl dark:border-green-800">
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                 <div>
@@ -166,11 +173,11 @@ const ContactSection = forwardRef((props,ref) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Contact Form */}
-          <div className="p-8 bg-white shadow-lg dark:bg-gray-800 rounded-2xl">
+          <div className="p-8 bg-white shadow-lg h-fit dark:bg-gray-800 rounded-2xl">
             <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
               <div className="grid gap-6 sm:grid-cols-2">
                 {/* Name Input */}
@@ -183,7 +190,7 @@ const ContactSection = forwardRef((props,ref) => {
                     id="from_name"
                     name="from_name"
                     required
-                    className="w-full px-4 py-3 transition-colors duration-300 border border-gray-300 rounded-lg dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 text-gray-700 transition-colors duration-300 bg-gray-100 border border-blue-300 rounded-lg focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                     placeholder="Enter your name"
                   />
                 </div>
@@ -198,7 +205,7 @@ const ContactSection = forwardRef((props,ref) => {
                     id="from_email"
                     name="from_email"
                     required
-                    className="w-full px-4 py-3 transition-colors duration-300 border border-gray-300 rounded-lg dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 text-gray-700 transition-colors duration-300 bg-gray-100 border border-blue-300 rounded-lg dark:border-gray-600 focus:outline-none dark:bg-gray-700 dark:text-white"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -214,7 +221,7 @@ const ContactSection = forwardRef((props,ref) => {
                   id="subject"
                   name="subject"
                   required
-                  className="w-full px-4 py-3 transition-colors duration-300 border border-gray-300 rounded-lg dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                  className="w-full px-4 py-3 text-gray-700 transition-colors duration-500 bg-gray-100 border border-blue-300 rounded-lg dark:border-gray-600 focus:outline-none dark:bg-gray-700 dark:text-white"
                   placeholder="What's this about?"
                 />
               </div>
@@ -229,7 +236,7 @@ const ContactSection = forwardRef((props,ref) => {
                   name="message"
                   required
                   rows={6}
-                  className="w-full px-4 py-3 transition-colors duration-300 border border-gray-300 rounded-lg resize-none dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                  className="w-full px-4 py-3 text-gray-700 transition-colors duration-300 bg-gray-100 border border-blue-300 rounded-lg resize-none dark:border-gray-600 focus:outline-none dark:bg-gray-700 dark:text-white"
                   placeholder="Tell me about your project or just say hello..."
                 />
               </div>
@@ -241,7 +248,7 @@ const ContactSection = forwardRef((props,ref) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex items-center justify-center w-full gap-3 px-8 py-4 font-semibold text-white transition-all duration-300 bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-blue-400 hover:shadow-lg hover:-translate-y-1 disabled:translate-y-0 disabled:cursor-not-allowed"
+                className="flex items-center justify-center w-full gap-3 px-8 py-4 font-semibold text-white transition-all duration-300 cursor-pointer bg-[#0767ac] rounded-lg hover:bg-blue-700 disabled:bg-blue-400 hover:shadow-lg hover:-translate-y-1 disabled:translate-y-0 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <>
@@ -256,26 +263,7 @@ const ContactSection = forwardRef((props,ref) => {
                 )}
               </button>
 
-              {/* Status Messages */}
-              {submitStatus === 'success' && (
-                <div className="flex items-center gap-3 p-4 bg-green-100 border border-green-200 rounded-lg dark:bg-green-900/20 dark:border-green-800">
-                  <FaCheck className="flex-shrink-0 text-green-600 dark:text-green-400" />
-                  <div className="text-green-700 dark:text-green-400">
-                    <div className="font-semibold">Message sent successfully!</div>
-                    <div className="text-sm">I'll get back to you within 24 hours.</div>
-                  </div>
-                </div>
-              )}
-
-              {submitStatus === 'error' && (
-                <div className="flex items-center gap-3 p-4 bg-red-100 border border-red-200 rounded-lg dark:bg-red-900/20 dark:border-red-800">
-                  <FaExclamationTriangle className="flex-shrink-0 text-red-600 dark:text-red-400" />
-                  <div className="text-red-700 dark:text-red-400">
-                    <div className="font-semibold">Failed to send message</div>
-                    <div className="text-sm">Please try again or contact me directly at alanpjpnc@gmail.com</div>
-                  </div>
-                </div>
-              )}
+              
             </form>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { useState, useRef,useEffect } from 'react'
-
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css'
 import Hero from './components/Hero'
 import Header from './components/Header'
@@ -18,13 +19,14 @@ const sectionRefs = {
   skills: useRef(null),
   services: useRef(null),
   contact: useRef(null),
-  projects: useRef(null),
+  project: useRef(null),
 };
 const [isVisible, setIsVisible] = useState(null);
 
 useEffect(() => {
-    const handleScroll = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
+    const handleScroll = () => {
       if (window.scrollY>100) {
         setIsVisible(true);
       }
@@ -39,13 +41,15 @@ useEffect(() => {
     };
      
   }, []);
-   
+
 useEffect(() => {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
+        console.log("Observing section:", entry.target.id, "isIntersecting:", entry.isIntersecting);  
         if (entry.isIntersecting) { 
           setActiveSection(entry.target.id);
+          console.log("Active section set to:", entry.target.id);
         }
       });
     },
@@ -65,8 +69,6 @@ useEffect(() => {
     
   }, [activeSection]);
 
-
-
   return (
     <>
     <Header setActiveSection={setActiveSection} activeSection={activeSection} sectionRefs={sectionRefs} ></Header>
@@ -74,10 +76,19 @@ useEffect(() => {
       <Hero ref={sectionRefs.home}/>
       <About ref={sectionRefs.about}/>
       <Skills ref={sectionRefs.skills}></Skills>
-      <Projects ref={sectionRefs.projects}></Projects>
-      <Contact></Contact>
+      <Projects ref={sectionRefs.project}></Projects>
+      <Contact ref={sectionRefs.contact}></Contact>
       {isVisible&&
       <ToTop></ToTop>}
+       <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        draggable
+      />
     </>
   )
 }
