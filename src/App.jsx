@@ -46,6 +46,7 @@ useEffect(() => {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
+        
         console.log("Observing section:", entry.target.id, "isIntersecting:", entry.isIntersecting);  
         if (entry.isIntersecting) { 
           setActiveSection(entry.target.id);
@@ -54,7 +55,8 @@ useEffect(() => {
       });
     },
     {
-      threshold: 0.4,
+
+      threshold: 0.2,// 50% of section must be visible
     }
   );
    Object.values(sectionRefs).forEach((ref) => {

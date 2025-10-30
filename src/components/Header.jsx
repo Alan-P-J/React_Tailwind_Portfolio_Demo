@@ -61,7 +61,10 @@ const toggleDarkMode = () => {
 >
       <header className="flex justify-between p-4">
         {/* home, about, projects, contact links */}
-         <button className="p-2 text-white rounded-md cursor-pointer md:justify-self-start top-4 left-4 dark:text-black md:hidden max-md:flex" onClick={() => setMenuOpen(!menuOpen)}>
+        <button 
+          className="p-2 text-white rounded-md cursor-pointer md:justify-self-start top-4 left-4 dark:text-black md:hidden max-md:flex" 
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
       <div className="relative w-6 h-6">
   {/* Close (X) icon */}
   <IoCloseOutline

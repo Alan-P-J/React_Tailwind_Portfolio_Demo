@@ -49,7 +49,7 @@ const ScrollToEmail = () => {
           Building digital experiences with modern web technologies. 
           Specializing in React, Springboot, and cloud-native applications.
         </p>
-      <div className="flex gap-5 text-sm buttons md:text-base">
+      <div className="flex justify-center gap-5 text-sm md:justify-normal buttons md:text-base">
         <button
           onClick={scrollToProjects}
           className="projects relative overflow-hidden flex duration-500 items-center gap-2 px-8 py-3 font-semibold text-[#0767ac] border border-[#0767ac] rounded-lg cursor-pointer transition-all  lg:mx-0 max-md:mb-7.5 group"

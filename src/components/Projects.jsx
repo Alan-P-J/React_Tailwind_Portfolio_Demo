@@ -16,7 +16,7 @@ const Projects = forwardRef((props, ref) => {
         
       ],
       techStack: {
-        frontend: [{ icon: SiReact, name: "React" }, { icon: SiTailwindcss, name: "Tailwind CSS" }],
+        frontend: [{ icon: SiReact, name: "React" }, { icon: SiSpringboot, name: "SprigBoot" }],
       },
       liveDemo: "https://weather.alanj.dev",
       sourceCode: "https://github.com/Alan-P-J/CareLink-using-Spring-boot",
@@ -32,8 +32,8 @@ const Projects = forwardRef((props, ref) => {
 
       ],
       techStack: {
-        frontend: [{ icon: SiReact, name: "React" }, { icon: SiTailwindcss, name: "Tailwind CSS" }],
-        backend: [{ icon: SiSpringboot, name: "Spring Boot" }, { icon: SiMongodb, name: "MongoDB" }],
+        frontend: [{ icon: SiReact, name: "Vue" }, { icon: SiTailwindcss, name: "Tailwind CSS" }],
+        backend: [{ icon: SiSpringboot, name: "Spring Boot" }, { icon: SiMongodb, name: "MYSQL" }],
       },
       liveDemo: "https://ecommerce-demo.alanj.dev",
       sourceCode: "https://github.com/Alan-P-J/TrendNest-full-code",
@@ -49,8 +49,8 @@ const Projects = forwardRef((props, ref) => {
   
       ],
       techStack: {
-        frontend: [{ icon: SiReact, name: "React" }, { icon: SiTailwindcss, name: "Tailwind CSS" }],
-        backend: [{ icon: SiSpringboot, name: "Spring Boot" }, { icon: SiDocker, name: "Docker" }],
+        frontend: [{ icon: SiReact, name: "Jquery" }, { icon: SiTailwindcss, name: "Tailwind CSS" }],
+        backend: [{ icon: SiSpringboot, name: "Python Flask" },{ icon: SiSpringboot, name: "Solidity" } ],
       },
       liveDemo: "https://taskmanager.alanj.dev",
       sourceCode: "https://github.com/Alan-P-J/Blockeste",
@@ -73,12 +73,12 @@ const Projects = forwardRef((props, ref) => {
         </div>
 
         {/* Project Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="flex flex-col overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-lg hover:shadow-xl dark:bg-gray-800 hover:scale-[1.02]"
-            >
+     <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+  {projects.map((project) => (
+    <div
+      key={project.id}
+      className="flex flex-col overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-lg hover:shadow-xl dark:bg-gray-800 hover:scale-[1.02]"
+    >
               {/* Project Image */}
               <div className="relative overflow-hidden aspect-video group">
                 <img
