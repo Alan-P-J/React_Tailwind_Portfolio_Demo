@@ -29,6 +29,9 @@ header .dark a:not(.active):hover {
   border-color: #fbbf24; /* amber */
 }
 
+.LinkedIn{
+  color: #2563EB
+}
 
 a .active {
   font-weight: 800;
