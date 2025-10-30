@@ -1,7 +1,7 @@
-import { useState, useRef,useEffect } from 'react'
+import { useState, useRef,useEffect } from 'react';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './App.css'
+import './App.css';
 import Hero from './components/Hero'
 import Header from './components/Header'
 import About from './components/About';
@@ -74,7 +74,6 @@ useEffect(() => {
   return (
     <>
     <Header setActiveSection={setActiveSection} activeSection={activeSection} sectionRefs={sectionRefs} ></Header>
-      
       <Hero ref={sectionRefs.home}/>
       <About ref={sectionRefs.about}/>
       <Skills ref={sectionRefs.skills}></Skills>

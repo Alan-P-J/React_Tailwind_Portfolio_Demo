@@ -3,6 +3,7 @@ import { RiMenu2Line } from "react-icons/ri";
 import { IoCloseOutline } from "react-icons/io5";
 import { CiDark } from "react-icons/ci";
 import { CiLight } from "react-icons/ci";
+import Logo from "../assets/file.svg";
 const Header = forwardRef(
   ({ setActiveSection, activeSection, sectionRefs }, ref) => {
     const getInitialDarkMode = () => {
@@ -35,10 +36,10 @@ const Header = forwardRef(
   text-black dark:text-black transition-colors duration-500
   bg-gray-600/70 dark:bg-white/70 rounded"
       >
-        <header className="flex justify-between p-4">
+        <header className="flex justify-between p-2">
           {/* home, about, projects, contact links */}
           <button
-            className="p-2 text-white rounded-md cursor-pointer md:justify-self-start top-4 left-4 dark:text-black md:hidden max-md:flex"
+            className="p-2 pt-4 text-white rounded-md cursor-pointer md:justify-self-start top-4 left-4 dark:text-black md:hidden max-md:flex"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             <div className="relative w-6 h-6">
@@ -53,9 +54,12 @@ const Header = forwardRef(
               />
             </div>
           </button>
+          <div className="flex items-center gap-2 pl-2">
+            <img src={Logo} alt="Logo" className="w-8 h-8 rounded-full" />
           <p className="flex items-center justify-center pl-5 text-lg text-white duration-500 dark:text-black demo">
-            Alan{" "}
+           Alan
           </p>
+          </div>
           <div
             className={`${
               menuOpen ? "flex" : "flex opacity-0 pointer-events-none"
@@ -68,7 +72,7 @@ const Header = forwardRef(
               (section) => (
                 <a
                   key={section}
-                  className={` px-4 py-2 mr-4 font-semibold cursor-pointer border-none no-underline duration-500 border hover:border-blue-600 rounded-2xl hover:bg-blue-400  ${
+                  className={` p-4 mr-4 font-semibold cursor-pointer border-none no-underline duration-500 border hover:border-blue-600 rounded-2xl hover:bg-blue-400  ${
                     activeSection === section
                       ? "text-blue-400 active"
                       : " dark:md:text-gray-700 text-gray-800 dark:text-white md:text-white hover:bg-gray-200 "
@@ -89,7 +93,7 @@ const Header = forwardRef(
           </div>
           <button
             onClick={toggleDarkMode}
-            className="w-12 h-12 flex items-center justify-center cursor-pointer text-white bg-[#0767ac] border-none rounded-full outline-none dark:bg-gray-400 dark:text-black"
+            className="mt-1 w-12 h-12 flex items-center justify-center cursor-pointer text-white bg-[#01497c] border-none rounded-full outline-none dark:bg-[#0767ac] dark:text-white"
           >
             <div className="relative w-6 h-6">
               {/* Light Mode Icon */}

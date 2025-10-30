@@ -73,6 +73,7 @@ h1 {
 #home .projects:hover {
   background-color: #0767ac;
   color: white;
+  border-color: #0767ac;
 }
 #home .hire:hover{
   background-color: #0767ac;
