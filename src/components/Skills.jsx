@@ -54,7 +54,7 @@ const SkillsAndServices = forwardRef((props,ref) => {
               className="p-8 transition-all duration-500 bg-white shadow-lg skills dark:bg-gray-800 rounded-2xl hover:shadow-xl"
             >
               <div className="flex items-center gap-4 mb-5">
-                <div className="p-3 text-blue-600 duration-500 bg-blue-100 rounded-lg dark:bg-blue-900 dark:text-blue-400">
+                <div className="p-3 text-blue-500 duration-500 bg-blue-100 rounded-lg dark:bg-blue-900 dark:text-blue-400">
                   <service.icon size={26} />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 duration-500 dark:text-white">

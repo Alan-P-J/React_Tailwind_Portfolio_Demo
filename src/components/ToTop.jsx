@@ -10,7 +10,7 @@ const ToTop = ({onTop}) => {
       top: 0,
       behavior: "smooth",
     });
-    console.log("Scrolled to top");
+
     onTop();
   };
 

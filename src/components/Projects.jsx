@@ -16,7 +16,7 @@ const Projects = forwardRef((props, ref) => {
         
       ],
       techStack: {
-        frontend: [{ icon: SiReact, name: "React" }, { icon: SiSpringboot, name: "SprigBoot" }],
+        frontend: [{ icon: SiReact, name: "React" }, { icon: SiSpringboot, name: "Spring Boot" },{ icon: SiSpringboot, name: "REST APIs" },{ icon: SiSpringboot, name: "SQL" }],
       },
       liveDemo: "https://weather.alanj.dev",
       sourceCode: "https://github.com/Alan-P-J/CareLink-using-Spring-boot",
@@ -50,7 +50,7 @@ const Projects = forwardRef((props, ref) => {
       ],
       techStack: {
         frontend: [{ icon: SiReact, name: "Jquery" }, { icon: SiTailwindcss, name: "Tailwind CSS" }],
-        backend: [{ icon: SiSpringboot, name: "Python Flask" },{ icon: SiSpringboot, name: "Solidity" } ],
+        backend: [{ icon: SiSpringboot, name: "Python Flask" },{ icon: SiSpringboot, name: "Solidity" },{ icon: SiSpringboot, name: "MYSSQL" } ],
       },
       liveDemo: "https://taskmanager.alanj.dev",
       sourceCode: "https://github.com/Alan-P-J/Blockeste",
@@ -124,7 +124,7 @@ const Projects = forwardRef((props, ref) => {
                         techs.map((tech, i) => (
                           <span
                             key={`${category}-${i}`}
-                            className="inline-flex items-center gap-1 px-3 py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-200"
+                            className="text-[#0767ac] inline-flex items-center gap-1 px-3 py-1 text-xs font-medium  bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-200"
                           >
                             {/* <tech.icon size={12} /> */}
                             {tech.name}
