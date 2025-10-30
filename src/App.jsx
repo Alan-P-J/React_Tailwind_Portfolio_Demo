@@ -56,7 +56,7 @@ useEffect(() => {
     },
     {
 
-      threshold: 0.2,// 50% of section must be visible
+      threshold: 0.2,
     }
   );
    Object.values(sectionRefs).forEach((ref) => {
