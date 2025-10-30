@@ -70,10 +70,7 @@ useEffect(() => {
 
     
   }, [activeSection]);
-  const onTop = () => {
-    console.log("onTop called in App");
-    setActiveSection('home');
-  }
+
   return (
     <>
     <Header setActiveSection={setActiveSection} activeSection={activeSection} sectionRefs={sectionRefs} ></Header>
@@ -85,7 +82,7 @@ useEffect(() => {
       <Contact ref={sectionRefs.contact}></Contact>
       <Footer></Footer>
       {isVisible&&
-      <ToTop onTop={onTop} ></ToTop>}
+      <ToTop ></ToTop>}
        <ToastContainer
         position="top-right"
         autoClose={3000}

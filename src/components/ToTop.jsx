@@ -1,8 +1,6 @@
 import React from "react";
 import { GoArrowUp } from "react-icons/go";
-// with extra smooth scroll-to-top button
-const ToTop = ({onTop}) => {
- 
+const ToTop = () => {
   const scrollToTop = () => {
     
     window.scrollTo({
@@ -10,7 +8,7 @@ const ToTop = ({onTop}) => {
       top: 0,
       behavior: "smooth",
     });
-    onTop();
+
   };
 
   return (
@@ -25,5 +23,4 @@ const ToTop = ({onTop}) => {
     </button>
   );
 };
-
 export default ToTop;

@@ -1,15 +1,13 @@
-import React, { forwardRef } from 'react';
-import { FaCode, FaHeart, FaCoffee, FaMusic, FaGamepad, FaHiking } from 'react-icons/fa';
-import { SiSpringboot, SiReact, SiMongodb } from 'react-icons/si';
+import React, { forwardRef } from "react";
 
-const AboutMe = forwardRef((props,ref) => 
-{
- 
-
+const AboutMe = forwardRef((props, ref) => {
   return (
-    <section ref={ref} id="about" className="bg-white md:pt-33 py-26 dark:bg-gray-900">
+    <section
+      ref={ref}
+      id="about"
+      className="bg-white md:pt-33 py-26 dark:bg-gray-900"
+    >
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
             About Me
@@ -18,9 +16,7 @@ const AboutMe = forwardRef((props,ref) =>
         </div>
 
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Left Column - Image and Personal Info */}
           <div className="space-y-8">
-            {/* Profile Image */}
             <div className="relative">
               <div className="mx-auto w-80 h-80 lg:mx-0">
                 <div className="absolute inset-0 transform scale-105 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl rotate-6"></div>
@@ -30,112 +26,77 @@ const AboutMe = forwardRef((props,ref) =>
                   className="relative z-10 object-cover w-full h-full shadow-2xl rounded-2xl"
                 />
               </div>
-              
-              {/* Floating Experience Badge */}
+
               <div className="absolute z-10 p-4 bg-white shadow-xl -bottom-4 -right-4 dark:bg-gray-800 rounded-2xl">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-blue-600">1+</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Year Experience</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    Year Experience
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Quick Info */}
             <div className="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">
-              <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">Quick Facts</h3>
+              <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">
+                Quick Facts
+              </h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-400">Location:</span>
-                  <span className="font-medium text-gray-900 dark:text-white">Thrissur, Kerala, India</span>
+                  <span className="text-gray-600 dark:text-gray-400">
+                    Location:
+                  </span>
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    Thrissur, Kerala, India
+                  </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-400">Email:</span>
-                  <span className="font-medium text-blue-600">alanpjpnc@gmail.com.com</span>
+                  <span className="text-gray-600 dark:text-gray-400">
+                    Email:
+                  </span>
+                  <span className="font-medium text-blue-600">
+                    alanpjpnc@gmail.com.com
+                  </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-400">Language:</span>
+                  <span className="text-gray-600 dark:text-gray-400">
+                    Language:
+                  </span>
                   <span className="flex items-center gap-2">
-                    {/* <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div> */}
-                    <span className="font-medium text-gray-900 dark:text-white">English, Malayalam, Hindi</span>
+                    <span className="font-medium text-gray-900 dark:text-white">
+                      English, Malayalam, Hindi
+                    </span>
                   </span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column - Bio and Details */}
           <div className="space-y-8">
-            {/* Main Bio */}
             <div>
               <h3 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
                 My Journey in Tech
               </h3>
-              
+
               <div className="space-y-4 leading-relaxed text-gray-600 dark:text-gray-300">
-  <p>
-    I'm a passionate Full-Stack Developer who transitioned from a different field, 
-    discovering my love for coding through problem-solving and creative exploration.
-    </p>
-  <p>
-    Over the past year, I've honed my skills in technologies like React, Spring Boot, 
-    and Mysql, building projects that range from web applications to APIs.
-  </p>
-  <p>
-    I enjoy turning complex ideas into elegant, user-friendly applications that 
-    balance functionality with great design.
-    My focus is on building scalable, maintainable systems where thoughtful design 
-    meets strong engineering.
-  </p>
-</div>
-
+                <p>
+                  I'm a passionate Full-Stack Developer who transitioned from a
+                  different field, discovering my love for coding through
+                  problem-solving and creative exploration.
+                </p>
+                <p>
+                  Over the past year, I've honed my skills in technologies like
+                  React, Spring Boot, and Mysql, building projects that range
+                  from web applications to APIs.
+                </p>
+                <p>
+                  I enjoy turning complex ideas into elegant, user-friendly
+                  applications that balance functionality with great design. My
+                  focus is on building scalable, maintainable systems where
+                  thoughtful design meets strong engineering.
+                </p>
+              </div>
             </div>
-{/* 
-            Technical Philosophy
-            <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl">
-              <div className="flex items-center gap-3 mb-4">
-                <FaCode className="text-xl text-blue-600" />
-                <h4 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  Technical Philosophy
-                </h4>
-              </div>
-              
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-2 h-2 mt-2 bg-blue-600 rounded-full"></div>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    <strong>Clean Code:</strong> Writing maintainable, readable code that stands the test of time
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-2 h-2 mt-2 bg-blue-600 rounded-full"></div>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    <strong>User-Centric Design:</strong> Building applications with the end-user always in mind
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-2 h-2 mt-2 bg-blue-600 rounded-full"></div>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    <strong>Performance First:</strong> Optimizing for speed and efficiency at every level
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-2 h-2 mt-2 bg-blue-600 rounded-full"></div>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    <strong>Continuous Learning:</strong> Staying current with emerging technologies and best practices
-                  </p>
-                </div>
-              </div>
-            </div> */}
-
-           
-
-            {/* Current Focus */}
-            {/* <div className="pl-4 border-l-4 border-blue-600">
-              <p className="italic text-gray-600 dark:text-gray-300">
-                "Currently exploring microservices architecture and deepening my knowledge 
-                in cloud-native development while contributing to open-source projects."
-              </p>
-            </div> */}
           </div>
         </div>
       </div>
