@@ -10,7 +10,6 @@ const ToTop = ({onTop}) => {
       top: 0,
       behavior: "smooth",
     });
-
     onTop();
   };
 

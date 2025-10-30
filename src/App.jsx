@@ -56,7 +56,7 @@ useEffect(() => {
     },
     {
 
-      threshold: 0.29,
+      threshold: 0.3,
       rootMargin: '0px 0px -15% 0px',
     }
   );
