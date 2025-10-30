@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-
+import profileImg from "../assets/4300df04-1386-482a-b198-fc01290b561f.jpeg";
 const AboutMe = forwardRef((props, ref) => {
   return (
     <section
@@ -21,7 +21,7 @@ const AboutMe = forwardRef((props, ref) => {
               <div className="mx-auto w-80 h-80 lg:mx-0">
                 <div className="absolute inset-0 transform scale-105 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl rotate-6"></div>
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+                  src={profileImg}
                   alt="Alan P J"
                   className="relative z-10 object-cover w-full h-full shadow-2xl rounded-2xl"
                 />

@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import { FaEnvelope } from 'react-icons/fa';
-
+import profileImg from '../assets/4300df04-1386-482a-b198-fc01290b561f.jpeg';
 const MinimalHeroSection = forwardRef((props,ref) => {
   const scrollToProjects = () => {
     const projectsSection = document.getElementById('project');
@@ -96,7 +96,7 @@ const ScrollToEmail = () => {
             </div>
         <div className="w-64 h-64 md:w-80 md:h-80">
           <img
-            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+            src={profileImg}
             alt="Alan P J"
             className="object-cover w-full h-full border-4 border-blue-100 rounded-full shadow-lg"
           />

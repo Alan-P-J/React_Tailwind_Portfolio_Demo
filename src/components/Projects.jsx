@@ -102,7 +102,7 @@ const Projects = forwardRef((props, ref) => {
     <section
       ref={ref}
       id="project"
-      className="min-h-screen py-20 scroll-mt-24 md:pt-33 bg-gray-50 dark:bg-gray-900"
+      className="min-h-screen py-20 scroll-mt-24 md:pt-17 bg-gray-50 dark:bg-gray-900"
     >
       <div className="container px-6 mx-auto">
         <div className="mb-16 text-center">

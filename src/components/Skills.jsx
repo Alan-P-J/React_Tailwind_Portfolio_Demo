@@ -33,7 +33,7 @@ const SkillsAndServices = forwardRef((props,ref) => {
     <section
     ref={ref}
       id="skills"
-     className="transition-colors duration-300 bg-gray-100 py-[6.5rem] md:pt-[8rem] dark:bg-gray-900"
+     className="py-20 transition-colors duration-300 bg-gray-100 md:pt-33 dark:bg-gray-900"
     >
       <div className="container px-4 mx-auto">
         {/* Header */}

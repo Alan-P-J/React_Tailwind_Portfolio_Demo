@@ -84,7 +84,7 @@ const ContactSection = forwardRef((props, ref) => {
     <section
       ref={ref}
       id="contact"
-      className="min-h-screen bg-gray-100 scroll-mt-24 py-26 md:pt-33 dark:bg-gray-900"
+      className="min-h-screen bg-gray-100 scroll-mt-24 py-26 md:pt-17 dark:bg-gray-900"
     >
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
