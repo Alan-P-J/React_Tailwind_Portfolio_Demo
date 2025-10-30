@@ -54,8 +54,8 @@ const Header = forwardRef(
               />
             </div>
           </button>
-          <div className="flex items-center gap-2 pl-2">
-            <img src={Logo} alt="Logo" className="w-8 h-8 rounded-full" />
+          <div className="flex items-center gap-2 pl-1">
+            <img src={Logo} alt="Logo" className="rounded-full h-11 w-11" />
           <p className="flex items-center justify-center pl-5 text-lg text-white duration-500 dark:text-black demo">
            Alan
           </p>
@@ -93,7 +93,7 @@ const Header = forwardRef(
           </div>
           <button
             onClick={toggleDarkMode}
-            className="mt-1 w-12 h-12 flex items-center justify-center cursor-pointer text-white bg-[#01497c] border-none rounded-full outline-none dark:bg-[#0767ac] dark:text-white"
+            className="mt-1 mr-1 w-12 h-12 flex items-center justify-center cursor-pointer text-white bg-[#01497c] border-none rounded-full outline-none dark:bg-[#0767ac] dark:text-white"
           >
             <div className="relative w-6 h-6">
               {/* Light Mode Icon */}
