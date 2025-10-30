@@ -19,7 +19,7 @@
 /* Assuming your dark mode adds a `.dark` class to <html> or <body> */
 header a:not(.active):hover {
   border-color: white;
-  color:#1E90FF;
+  color:#2563EB;
 }
 html, body {
   max-width: 100%;

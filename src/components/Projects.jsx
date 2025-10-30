@@ -60,7 +60,7 @@ const Projects = forwardRef((props, ref) => {
   ];
 
   return (
-    <section ref={ref} id="project" className="py-20 md:pt-33 bg-gray-50 dark:bg-gray-900">
+    <section ref={ref} id="project" className="min-h-screen py-20 scroll-mt-24 md:pt-33 bg-gray-50 dark:bg-gray-900">
       <div className="container px-6 mx-auto">
         {/* Section Header */}
         <div className="mb-16 text-center">

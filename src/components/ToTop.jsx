@@ -1,13 +1,17 @@
 import React from "react";
 import { GoArrowUp } from "react-icons/go";
 // with extra smooth scroll-to-top button
-const ToTop = () => {
+const ToTop = ({onTop}) => {
  
   const scrollToTop = () => {
+    
     window.scrollTo({
+      
       top: 0,
       behavior: "smooth",
     });
+    console.log("Scrolled to top");
+    onTop();
   };
 
   return (

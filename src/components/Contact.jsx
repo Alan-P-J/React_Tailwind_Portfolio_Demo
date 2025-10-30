@@ -21,7 +21,7 @@ const ContactSection = forwardRef((props,ref) => {
       label: 'Phone',
       value: '+91 12345 67890',
       link: 'tel:+911234567890',
-      color: 'text-green-500'
+      color: 'text-red-500'
     },
     {
       icon: FaMapMarkerAlt,
@@ -80,7 +80,7 @@ const ContactSection = forwardRef((props,ref) => {
   };
 
   return (
-    <section ref={ref} id="contact" className="bg-gray-100 py-26 md:pt-33 dark:bg-gray-900">
+    <section ref={ref} id="contact" className="min-h-screen bg-gray-100 scroll-mt-24 py-26 md:pt-33 dark:bg-gray-900">
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-16 text-center">

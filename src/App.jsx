@@ -22,7 +22,7 @@ const sectionRefs = {
   project: useRef(null),
 };
 const [isVisible, setIsVisible] = useState(null);
-
+  
 useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -47,16 +47,17 @@ useEffect(() => {
     (entries) => {
       entries.forEach((entry) => {
         
-        console.log("Observing section:", entry.target.id, "isIntersecting:", entry.isIntersecting);  
+        // console.log("Observing section:", entry.target.id, "isIntersecting:", entry.isIntersecting);  
         if (entry.isIntersecting) { 
           setActiveSection(entry.target.id);
-          console.log("Active section set to:", entry.target.id);
+          // console.log("Active section set to:", entry.target.id);
         }
       });
     },
     {
 
-      threshold: 0.2,
+      threshold: 0.29,
+      rootMargin: '0px 0px -15% 0px',
     }
   );
    Object.values(sectionRefs).forEach((ref) => {
@@ -70,7 +71,10 @@ useEffect(() => {
 
     
   }, [activeSection]);
-
+  const onTop = () => {
+    console.log("onTop called in App");
+    setActiveSection('home');
+  }
   return (
     <>
     <Header setActiveSection={setActiveSection} activeSection={activeSection} sectionRefs={sectionRefs} ></Header>
@@ -81,7 +85,7 @@ useEffect(() => {
       <Projects ref={sectionRefs.project}></Projects>
       <Contact ref={sectionRefs.contact}></Contact>
       {isVisible&&
-      <ToTop></ToTop>}
+      <ToTop onTop={onTop} ></ToTop>}
        <ToastContainer
         position="top-right"
         autoClose={3000}
