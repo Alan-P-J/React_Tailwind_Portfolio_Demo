@@ -7,9 +7,9 @@ import Header from './components/Header'
 import About from './components/About';
 import ToTop from './components/ToTop';
 import Skills from './components/Skills';
-import HeroSection from './components/herodemo';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import Footer from './components/footer';
 
 function App() {
 const [activeSection, setActiveSection] = useState('home');
@@ -55,7 +55,6 @@ useEffect(() => {
       });
     },
     {
-
       threshold: 0.3,
       rootMargin: '0px 0px -15% 0px',
     }
@@ -84,6 +83,7 @@ useEffect(() => {
       <Skills ref={sectionRefs.skills}></Skills>
       <Projects ref={sectionRefs.project}></Projects>
       <Contact ref={sectionRefs.contact}></Contact>
+      <Footer></Footer>
       {isVisible&&
       <ToTop onTop={onTop} ></ToTop>}
        <ToastContainer
