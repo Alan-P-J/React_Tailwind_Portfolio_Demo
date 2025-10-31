@@ -37,7 +37,7 @@ const ScrollToEmail = () => {
     <div className="flex flex-col-reverse items-center justify-between gap-12 pt-7 lg:flex-row">
 
       <div className="flex-1 text-center lg:text-left">
-        <h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+        <h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-8xl md-max:text-lg dark:text-white">
           Alan P J
         </h1>
 
@@ -82,7 +82,7 @@ const ScrollToEmail = () => {
               </div>
               </div>
         </div> */}
-         <div className="visible absolute p-3 bg-white rounded-full top-[35%] left-[12%] md:invisible md:left-0 md:right">
+         {/* <div className="visible absolute p-3 bg-white rounded-full top-[35%] left-[12%] md:invisible md:left-0 md:right">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                     <span className="text-sm font-semibold text-gray-700">Open to work</span>
@@ -93,12 +93,12 @@ const ScrollToEmail = () => {
                     <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                     <span className="text-sm font-semibold text-gray-700">Open to work</span>
                   </div>
-            </div>
+            </div> */}
         <div className="w-64 h-64 md:w-80 md:h-80">
           <img
             src={profileImg}
             alt="Alan P J"
-            className="object-cover w-full h-full border-4 border-blue-100 rounded-full shadow-lg"
+            className="object-cover w-full h-full border-4 border-blue-100 rounded-full shadow-lg scale-120"
           />
         </div>
          
