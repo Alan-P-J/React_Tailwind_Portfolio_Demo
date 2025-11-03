@@ -231,7 +231,7 @@ const ContactSection = forwardRef((props, ref) => {
                   name="message"
                   required
                   rows={6}
-                  className="w-full px-4 py-3 text-gray-700 transition-colors duration-300 bg-gray-100 border border-blue-300 rounded-lg resize-none dark:border-gray-600 focus:outline-none dark:bg-gray-700 dark:text-white"
+                  className="w-full px-4 py-3 text-gray-700 transition-colors duration-500 bg-gray-100 border border-blue-300 rounded-lg resize-none dark:border-gray-600 focus:outline-none dark:bg-gray-700 dark:text-white"
                   placeholder="Tell me about your project or just say hello..."
                 />
               </div>

@@ -43,9 +43,8 @@ a {
 }
 
 .demo{
-
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   font-style: normal;
 }
 
@@ -59,7 +58,7 @@ body {
 /* background: -webkit-linear-gradient(to right, #3498db, #2c3e50); 
 background: linear-gradient(to right, #3498db, #2c3e50);   */
   min-height: 100vh; 
-font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-waight: 800;
   font-style: normal;
   font-size: 16px;
@@ -98,6 +97,9 @@ h1 {
     box-shadow: 4px 8px 12px rgba(255, 255, 255, 0.1), 0 1px 3px rgba(255, 255, 255, 0.06);
 }
 
+.name{
+  font-family: "Montserrat", sans-serif;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
