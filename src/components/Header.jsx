@@ -55,7 +55,7 @@ const Header = forwardRef(
             </div>
           </button>
           <div className="flex items-center gap-2 pl-1">
-            <img src={Logo} alt="Logo" className="rounded-full max-md:hidden h-11 w-11" />
+            <img src={Logo} alt="Logo" className="mr-5 rounded-full max-md:hidden h-11 w-11" />
           <p className="flex items-center justify-center pl-5 text-2xl text-white duration-500 name dark:text-black demo max-md:pt-2">
            Alan
           </p>

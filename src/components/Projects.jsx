@@ -102,7 +102,7 @@ const Projects = forwardRef((props, ref) => {
     <section
       ref={ref}
       id="project"
-      className="min-h-screen py-20 scroll-mt-24 md:pt-17 bg-gray-50 dark:bg-gray-900"
+      className="min-h-screen py-20 duration-500 scroll-mt-24 md:pt-17 bg-gray-50 dark:bg-gray-900"
     >
       <div className="container px-6 mx-auto">
         <div className="mb-16 text-center">
@@ -120,7 +120,7 @@ const Projects = forwardRef((props, ref) => {
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
+              className={`px-4 py-2 rounded-full font-medium transition-all duration-500 ${
                 activeCategory === category.id
                   ? "bg-[#0767ac] text-white shadow-lg"
                   : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-blue-50 dark:hover:bg-blue-900/20"
