@@ -25,8 +25,8 @@ const ContactSection = forwardRef((props, ref) => {
     {
       icon: FaPhone,
       label: "Phone",
-      value: "+91 12345 67890",
-      link: "tel:+911234567890",
+      value: "+91 7510189423",
+      link: "tel:+917510189423",
       color: "text-red-500",
     },
     {
