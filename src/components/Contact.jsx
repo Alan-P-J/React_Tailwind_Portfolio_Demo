@@ -2,6 +2,7 @@ import React, { useState, useRef, forwardRef } from "react";
 import emailjs from "emailjs-com";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { SiLeetcode } from "react-icons/si";
 import {
   FaEnvelope,
   FaPhone,
@@ -9,6 +10,7 @@ import {
   FaGithub,
   FaLinkedin,
   FaPaperPlane,
+
 
 } from "react-icons/fa";
 const ContactSection = forwardRef((props, ref) => {
@@ -33,7 +35,7 @@ const ContactSection = forwardRef((props, ref) => {
       icon: FaMapMarkerAlt,
       label: "Location",
       value: "Kerala, India",
-      link: "https://maps.google.com/?q=Kerala,India",
+      link: "https://maps.google.com/?q=Thrissue, Kerala,India",
       color: "text-blue-500",
     },
   ];
@@ -51,6 +53,12 @@ const ContactSection = forwardRef((props, ref) => {
       link: "https://www.linkedin.com/in/alan-p-j-5747a1247/",
       color: "text-blue-600",
     },
+    {
+      label:"LeetCode",
+      icon: SiLeetcode,
+      link: "https://leetcode.com/u/K28night/",
+      color: "text-green-600",
+    }
   ];
 
   const sendEmail = (e) => {
