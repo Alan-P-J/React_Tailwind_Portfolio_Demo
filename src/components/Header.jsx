@@ -32,7 +32,7 @@ const Header = forwardRef(
     return (
       <div
         ref={ref}
-        className="z-50 fixed md:top-8 md:left-[2.5%] h-18 w-full md:w-[95%] max-md:rounded-none md:rounded-full
+        className="z-50 fixed md:top-3 md:left-[2.5%] h-18 w-full md:w-[95%] max-md:rounded-none md:rounded-full
   text-black dark:text-black transition-colors duration-500
   bg-gray-600/70 dark:bg-white/70 rounded"
       >

@@ -92,7 +92,7 @@ const ContactSection = forwardRef((props, ref) => {
     <section
       ref={ref}
       id="contact"
-      className="min-h-screen bg-gray-100 scroll-mt-24 py-26 md:pt-17 dark:bg-gray-900"
+      className="min-h-screen bg-gray-100 scroll-mt-24 py-26 md:pt-7 dark:bg-gray-900"
     >
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
@@ -152,7 +152,7 @@ const ContactSection = forwardRef((props, ref) => {
             </div>
 
             <div>
-              <h4 className="mb-4 font-semibold text-gray-900 dark:text-white">
+              <h4 className="mb-4 font-semibold text-gray-900 dark:text-white flex">
                 Follow me on
               </h4>
               <div className="flex gap-4">
