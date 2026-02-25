@@ -207,7 +207,7 @@ const Projects = forwardRef((props, ref) => {
 
                   <div className="mb-4">
                     <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                      {project.features.map((feature, i) => (
+                      {project.features.map((feature) => (
                         <li
                           key={`${project.id}-${feature}`}
                           className="flex items-start"
