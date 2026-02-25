@@ -72,7 +72,7 @@ const ContactSection = forwardRef((_, ref) => {
         "MQf4oZNT7mwtmWSZ6",
       )
       .then(
-        (result) => {
+        () => {
           // console.log("Email sent successfully:", result.text);
           setIsSubmitting(false);
           toast.success(
@@ -135,7 +135,7 @@ const ContactSection = forwardRef((_, ref) => {
             </div>
 
             <div className="grid gap-6 sm:grid-cols-2">
-              {contactMethods.map((method, index) => (
+              {contactMethods.map((method) => (
                 <a
                   key={method.label}
                   href={method.link}
