@@ -10,10 +10,8 @@ import {
   FaGithub,
   FaLinkedin,
   FaPaperPlane,
-
-
 } from "react-icons/fa";
-const ContactSection = forwardRef((props, ref) => {
+const ContactSection = forwardRef((_, ref) => {
   const formRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const contactMethods = [
@@ -22,6 +20,7 @@ const ContactSection = forwardRef((props, ref) => {
       label: "Email",
       value: "alanpjpnc@gmail.com",
       link: "mailto:alanpjpnc@gmail.com",
+      gradient: "from-blue-500 to-red-500",
       color: "text-red-500",
     },
     {
@@ -35,7 +34,7 @@ const ContactSection = forwardRef((props, ref) => {
       icon: FaMapMarkerAlt,
       label: "Location",
       value: "Kerala, India",
-      link: "https://maps.google.com/?q=Thrissue, Kerala,India",
+      link: "https://maps.google.com/?q=Thrissur, Kerala,India",
       color: "text-blue-500",
     },
   ];
@@ -54,11 +53,11 @@ const ContactSection = forwardRef((props, ref) => {
       color: "text-blue-600",
     },
     {
-      label:"LeetCode",
+      label: "LeetCode",
       icon: SiLeetcode,
       link: "https://leetcode.com/u/K28night/",
       color: "text-green-600",
-    }
+    },
   ];
 
   const sendEmail = (e) => {
@@ -70,13 +69,15 @@ const ContactSection = forwardRef((props, ref) => {
         "service_q8vpnne",
         "template_f6lms94",
         formRef.current,
-        "MQf4oZNT7mwtmWSZ6"
+        "MQf4oZNT7mwtmWSZ6",
       )
       .then(
         (result) => {
-          console.log("Email sent successfully:", result.text);
+          // console.log("Email sent successfully:", result.text);
           setIsSubmitting(false);
-          toast.success("Email sent successfully!");
+          toast.success(
+            "Thanks for reaching out! I’ll get back to you shortly.",
+          );
           // Reset form
           formRef.current.reset();
         },
@@ -84,9 +85,20 @@ const ContactSection = forwardRef((props, ref) => {
           console.error("Email failed to send:", error.text);
           setIsSubmitting(false);
           toast.error("Something went wrong!");
-        }
+        },
       );
   };
+
+  // const contactMethods = [
+  //   {
+  //     icon: FaEnvelope,
+  //     label: "Email",
+  //     value: "alanpjpnc@gmail.com",
+  //     link: "mailto:alanpjpnc@gmail.com",
+  //     gradient: "from-blue-500 to-red-500",
+  //   },
+  //   ...
+  // ];
 
   return (
     <section
@@ -100,9 +112,12 @@ const ContactSection = forwardRef((props, ref) => {
             Get In Touch
           </h2>
           <p className="max-w-2xl mx-auto text-xl text-gray-600 dark:text-gray-400">
-            Have a project in mind? Let's work together to bring your ideas to
-            life.
+            Looking to hire a Java or Full Stack Developer? Let’s connect and
+            discuss how I can contribute to your team.
           </p>
+          <span className="inline-block px-4 py-1 mt-4 mb-4 text-sm font-medium text-blue-700 bg-gray-400 rounded-full">
+            Open to Full-Time Opportunities
+          </span>
         </div>
 
         <div className="grid gap-12 lg:grid-cols-2">
@@ -112,27 +127,24 @@ const ContactSection = forwardRef((props, ref) => {
                 Let's Start a Conversation
               </h3>
               <p className="mb-8 leading-relaxed text-gray-600 dark:text-gray-400">
-                I'm currently available for freelance work and full-time
-                opportunities. Whether you have a project in mind or just want
-                to connect, feel free to reach out. I'll get back to you within
-                24 hours.
+                I'm currently open to full-time backend or full-stack developer
+                opportunities. I'm especially interested in roles involving
+                Java, Spring Boot, and scalable web applications. Feel free to
+                reach out — I usually respond within 24 hours.
               </p>
             </div>
 
             <div className="grid gap-6 sm:grid-cols-2">
               {contactMethods.map((method, index) => (
                 <a
-                  key={index}
+                  key={method.label}
                   href={method.link}
                   target={method.link.startsWith("http") ? "_blank" : "_self"}
                   rel="noopener noreferrer"
                   className="relative flex flex-col items-center justify-center p-6 text-center transition-all duration-300 bg-white shadow-md dark:bg-gray-800 rounded-2xl hover:shadow-2xl hover:-translate-y-1 group"
                 >
                   <div
-                    className={`flex items-center justify-center w-14 h-14 mb-4 rounded-full bg-gradient-to-tr from-blue-500 to-${method.color.replace(
-                      "text-",
-                      ""
-                    )} dark:from-gray-700 dark:to-gray-600 text-white shadow-md group-hover:scale-110 transition-transform`}
+                    className={`flex items-center justify-center w-14 h-14 mb-4 rounded-full bg-gradient-to-tr from-blue-500 ${method.gradient} dark:from-gray-700 dark:to-gray-600 text-white shadow-md group-hover:scale-110 transition-transform`}
                   >
                     <method.icon size={24} />
                   </div>
@@ -152,7 +164,7 @@ const ContactSection = forwardRef((props, ref) => {
             </div>
 
             <div>
-              <h4 className="mb-4 font-semibold text-gray-900 dark:text-white flex">
+              <h4 className="flex mb-4 font-semibold text-gray-900 dark:text-white">
                 Follow me on
               </h4>
               <div className="flex gap-4">
@@ -168,7 +180,14 @@ const ContactSection = forwardRef((props, ref) => {
                     <social.icon size={20} />
                   </a>
                 ))}
-              </div>
+              </div>{" "}
+              <a
+                href="../assets/Alan_PJ_Junior_Java_Developer (1).pdf"
+                download
+                className="inline-block px-6 py-3 mt-4 font-semibold text-white bg-blue-600 rounded-lg"
+              >
+                Download Resume
+              </a>
             </div>
           </div>
 
@@ -253,6 +272,8 @@ const ContactSection = forwardRef((props, ref) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
+                aria-busy={isSubmitting}
+                aria-disabled={isSubmitting}
                 className="flex items-center justify-center w-full gap-3 px-8 py-4 font-semibold text-white transition-all duration-300 cursor-pointer bg-[#0767ac] rounded-lg hover:bg-blue-700 disabled:bg-blue-400 hover:shadow-lg hover:-translate-y-1 disabled:translate-y-0 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (

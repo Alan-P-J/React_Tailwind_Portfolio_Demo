@@ -15,7 +15,7 @@ const Projects = forwardRef((props, ref) => {
       title: "MuzPayroll – Enterprise Payroll & HRMS Platform",
       date: "Mar 2025 – Present",
       description:
-        "Enterprise payroll and HRMS platform built to support secure, compliant payroll workflows with scalable backend architecture.",
+        "Contributing to the migration of an enterprise payroll system from .NET to Java (Spring Boot). Designing REST APIs, implementing business logic, and optimizing PostgreSQL queries for scalable payroll processing workflows. Role: Backend Developer (Payroll Migration)",
       image: payrollImg,
       category: "fullstack",
       features: [
@@ -42,7 +42,7 @@ const Projects = forwardRef((props, ref) => {
       title: "CareLink - Healthcare Management System",
       date: "Mar 2025",
       description:
-        "Healthcare CRUD management system implementing RESTful APIs with Spring Boot backend and React.js frontend for comprehensive patient and appointment data operations.",
+        "Designed and implemented RESTful APIs using Spring Boot for patient and appointment management. Integrated JWT authentication and built responsive UI using React. Personal full-stack project.",
       image: weatherImg,
       category: "fullstack",
       features: [
@@ -52,21 +52,24 @@ const Projects = forwardRef((props, ref) => {
       ],
 
       techStack: {
-        frontend: [
-          { name: "React" },
+        frontend: [{ name: "React" }],
+        backend: [
+          { name: "Java" },
           { name: "Spring Boot" },
           { name: "REST APIs" },
-          { name: "SQL" },
         ],
+        database: [{ name: "PostgreSQL" }],
+        security: [{ name: "JWT" }],
+        tools: [{ name: "Git" }, { name: "Postman" }],
       },
       sourceCode: "https://github.com/Alan-P-J/CareLink-using-Spring-boot",
     },
     {
       id: 3,
       title: "TrendNest E-Commerce Platform",
-      date: "Nov 2025",
+      date: "2025",
       description:
-        "A complete full-stack e-commerce platform featuring a Vue.js frontend for seamless user experience and a Spring Boot backend for robust API services, delivering a modern shopping solution.",
+        "Designed and developed a full-stack e-commerce platform with a Vue.js frontend and Spring Boot backend, implementing product, cart, and order workflows using REST APIs and relational database design.",
       image: ecommerceImg,
       category: "fullstack",
       features: [
@@ -83,7 +86,7 @@ const Projects = forwardRef((props, ref) => {
     {
       id: 4,
       title: "Blockeste - Blockchain Property System",
-      date: "Jan 2024",
+      date: "2024",
       description:
         "A blockchain-based property ownership platform featuring smart contracts for secure transactions, KYC verification, price prediction using machine learning, and decentralized document storage via IPFS.",
       image: carelinkImg,
@@ -107,7 +110,7 @@ const Projects = forwardRef((props, ref) => {
     {
       id: 6,
       title: "To-Do List with Admin Module",
-      date: "Aug 2025",
+      date: "2025",
       description:
         "A comprehensive task management system with integrated Admin Module that streamlines task assignment, tracking, and management within teams. Enhances productivity, accountability, and timely project delivery through efficient task delegation and monitoring.",
       image: TodoList,
@@ -205,7 +208,10 @@ const Projects = forwardRef((props, ref) => {
                   <div className="mb-4">
                     <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
                       {project.features.map((feature, i) => (
-                        <li key={i} className="flex items-start">
+                        <li
+                          key={`${project.id}-${feature}`}
+                          className="flex items-start"
+                        >
                           <span className="mr-2 text-blue-500">•</span>
                           {feature}
                         </li>
