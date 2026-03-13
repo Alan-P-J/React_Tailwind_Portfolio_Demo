@@ -1,16 +1,128 @@
-# React + Vite
+# Alan P J — Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern **React + Tailwind CSS portfolio website** showcasing my projects, technical skills, and experience as a **Java Full Stack Developer**.
 
-Currently, two official plugins are available:
+🔗 **Live Demo**
+https://alan-p-j.github.io/React_Tailwind_Portfolio/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Responsive modern UI
+* Dark / Light mode support
+* Skills and technology showcase
+* Project portfolio section
+* Contact form using EmailJS
+* Optimized SEO metadata
+* GitHub Pages deployment with CI/CD
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🖼 Preview
+
+![Portfolio Screenshot](./public/social-preview.png)
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+* React
+* Vite
+* Tailwind CSS
+* JavaScript (ES6+)
+
+### Backend Skills
+
+* Java
+* Spring Boot
+* REST APIs
+* PostgreSQL / MySQL
+
+### Tools
+
+* Git
+* GitHub
+* Postman
+* Agile Development
+
+---
+
+## 📂 Project Structure
+
+```
+src
+ ├── components
+ ├── sections
+ ├── assets
+ └── main.jsx
+
+public
+ ├── favicon.jpg
+ └── social-preview.png
+```
+
+---
+
+## ⚙️ Installation
+
+Clone the repository:
+
+```
+git clone https://github.com/Alan-P-J/React_Tailwind_Portfolio.git
+```
+
+Navigate to the project folder:
+
+```
+cd React_Tailwind_Portfolio
+```
+
+Install dependencies:
+
+```
+npm install
+```
+
+Run the development server:
+
+```
+npm run dev
+```
+
+Build for production:
+
+```
+npm run build
+```
+
+---
+
+## 🌐 Deployment
+
+This project is deployed using **GitHub Pages**.
+
+```
+npm run deploy
+```
+
+Live site:
+https://alan-p-j.github.io/React_Tailwind_Portfolio/
+
+---
+
+## 📬 Contact
+
+If you'd like to connect:
+
+* LinkedIn:
+  https://linkedin.com/in/alan-p-j-5747a1247
+
+* GitHub:
+  https://github.com/Alan-P-J
+
+---
+
+⭐ If you found this project useful, consider giving it a **star**!
