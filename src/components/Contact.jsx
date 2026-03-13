@@ -3,6 +3,7 @@ import emailjs from "emailjs-com";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SiLeetcode } from "react-icons/si";
+
 import {
   FaEnvelope,
   FaPhone,
@@ -11,65 +12,80 @@ import {
   FaLinkedin,
   FaPaperPlane,
 } from "react-icons/fa";
+
+const contactMethods = [
+  {
+    icon: FaEnvelope,
+    label: "Email",
+    value: "alanpjpnc@gmail.com",
+    link: "mailto:alanpjpnc@gmail.com",
+    gradient: "from-blue-500 to-red-500",
+    color: "text-red-500",
+  },
+  {
+    icon: FaPhone,
+    label: "Phone",
+    value: "+91 7510189423 (WhatsApp available)",
+    link: "tel:+917510189423",
+    color: "text-red-500",
+    gradient: "from-red-400 to-red-600"
+  },
+  {
+    icon: FaMapMarkerAlt,
+    label: "Location",
+    value: "Kerala, India · Open to UAE",
+    link: "https://maps.google.com/?q=Thrissur, Kerala,India",
+    color: "text-blue-500",
+    gradient: "from-red-400 to-red-600"
+  },
+];
+
+const socialLinks = [
+  {
+    icon: FaGithub,
+    label: "GitHub",
+    link: "https://github.com/Alan-P-J",
+    color: "hover:text-gray-800 dark:hover:text-white",
+  },
+  {
+    icon: FaLinkedin,
+    label: "LinkedIn",
+    link: "https://www.linkedin.com/in/alan-p-j-5747a1247/",
+    color: "text-blue-600",
+  },
+  {
+    label: "LeetCode",
+    icon: SiLeetcode,
+    link: "https://leetcode.com/u/K28night/",
+    color: "text-green-600",
+  },
+];
+
 const ContactSection = forwardRef((_, ref) => {
   const formRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const contactMethods = [
-    {
-      icon: FaEnvelope,
-      label: "Email",
-      value: "alanpjpnc@gmail.com",
-      link: "mailto:alanpjpnc@gmail.com",
-      gradient: "from-blue-500 to-red-500",
-      color: "text-red-500",
-    },
-    {
-      icon: FaPhone,
-      label: "Phone",
-      value: "+91 7510189423",
-      link: "tel:+917510189423",
-      color: "text-red-500",
-    },
-    {
-      icon: FaMapMarkerAlt,
-      label: "Location",
-      value: "Kerala, India",
-      link: "https://maps.google.com/?q=Thrissur, Kerala,India",
-      color: "text-blue-500",
-    },
-  ];
-
-  const socialLinks = [
-    {
-      icon: FaGithub,
-      label: "GitHub",
-      link: "https://github.com/Alan-P-J",
-      color: "hover:text-gray-800 dark:hover:text-white",
-    },
-    {
-      icon: FaLinkedin,
-      label: "LinkedIn",
-      link: "https://www.linkedin.com/in/alan-p-j-5747a1247/",
-      color: "text-blue-600",
-    },
-    {
-      label: "LeetCode",
-      icon: SiLeetcode,
-      link: "https://leetcode.com/u/K28night/",
-      color: "text-green-600",
-    },
-  ];
+  const [lastSent, setLastSent] = useState(0);
 
   const sendEmail = (e) => {
     e.preventDefault();
+
+    if (Date.now() - lastSent < 60000) {
+      toast.warn("Please wait a minute before sending again.");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formRef.current.from_email.value)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
     setIsSubmitting(true);
 
     emailjs
       .sendForm(
-        "service_q8vpnne",
-        "template_f6lms94",
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         formRef.current,
-        "MQf4oZNT7mwtmWSZ6",
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
       )
       .then(
         () => {
@@ -80,6 +96,7 @@ const ContactSection = forwardRef((_, ref) => {
           );
           // Reset form
           formRef.current.reset();
+          setLastSent(Date.now());
         },
         (error) => {
           console.error("Email failed to send:", error.text);
@@ -88,17 +105,6 @@ const ContactSection = forwardRef((_, ref) => {
         },
       );
   };
-
-  // const contactMethods = [
-  //   {
-  //     icon: FaEnvelope,
-  //     label: "Email",
-  //     value: "alanpjpnc@gmail.com",
-  //     link: "mailto:alanpjpnc@gmail.com",
-  //     gradient: "from-blue-500 to-red-500",
-  //   },
-  //   ...
-  // ];
 
   return (
     <section
@@ -115,7 +121,7 @@ const ContactSection = forwardRef((_, ref) => {
             Looking to hire a Java or Full Stack Developer? Let’s connect and
             discuss how I can contribute to your team.
           </p>
-          <span className="inline-block px-4 py-1 mt-4 mb-4 text-sm font-medium text-blue-700 bg-gray-400 rounded-full">
+          <span className="inline-block px-4 py-1 mt-4 mb-4 text-sm font-medium text-blue-700 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
             Open to Full-Time Opportunities
           </span>
         </div>
@@ -168,13 +174,13 @@ const ContactSection = forwardRef((_, ref) => {
                 Follow me on
               </h4>
               <div className="flex gap-4">
-                {socialLinks.map((social, index) => (
+                {socialLinks.map((social) => (
                   <a
-                    key={index}
+                    key={social.label}
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`p-3 text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800 rounded-lg transition-all duration-300  hover:scale-110 ${social.color} ${social.label}`}
+                    className={`p-3 text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800 rounded-lg transition-all duration-300  hover:scale-110 ${social.color}`}
                     aria-label={social.label}
                   >
                     <social.icon size={20} />
@@ -182,7 +188,7 @@ const ContactSection = forwardRef((_, ref) => {
                 ))}
               </div>{" "}
               <a
-                href="../assets/Alan_PJ_Junior_Java_Developer (1).pdf"
+                href={`${import.meta.env.BASE_URL}Alan_PJ_Junior_Software_Engineer.pdf`}
                 download
                 className="inline-block px-6 py-3 mt-4 font-semibold text-white bg-blue-600 rounded-lg"
               >
@@ -206,7 +212,7 @@ const ContactSection = forwardRef((_, ref) => {
                     id="from_name"
                     name="from_name"
                     required
-                    className="w-full px-4 py-3 text-gray-700 transition-colors duration-300 bg-gray-100 border border-blue-300 rounded-lg focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 text-gray-700 transition-colors duration-300 bg-gray-100 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                     placeholder="Enter your name"
                   />
                 </div>
@@ -223,7 +229,7 @@ const ContactSection = forwardRef((_, ref) => {
                     id="from_email"
                     name="from_email"
                     required
-                    className="w-full px-4 py-3 text-gray-700 transition-colors duration-300 bg-gray-100 border border-blue-300 rounded-lg dark:border-gray-600 focus:outline-none dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 text-gray-700 transition-colors duration-300 bg-gray-100 border border-blue-300 rounded-lg dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -241,7 +247,7 @@ const ContactSection = forwardRef((_, ref) => {
                   id="subject"
                   name="subject"
                   required
-                  className="w-full px-4 py-3 text-gray-700 transition-colors duration-500 bg-gray-100 border border-blue-300 rounded-lg dark:border-gray-600 focus:outline-none dark:bg-gray-700 dark:text-white"
+                  className="w-full px-4 py-3 text-gray-700 transition-colors duration-500 bg-gray-100 border border-blue-300 rounded-lg dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                   placeholder="What's this about?"
                 />
               </div>
@@ -258,7 +264,7 @@ const ContactSection = forwardRef((_, ref) => {
                   name="message"
                   required
                   rows={6}
-                  className="w-full px-4 py-3 text-gray-700 transition-colors duration-500 bg-gray-100 border border-blue-300 rounded-lg resize-none dark:border-gray-600 focus:outline-none dark:bg-gray-700 dark:text-white"
+                  className="w-full px-4 py-3 text-gray-700 transition-colors duration-500 bg-gray-100 border border-blue-300 rounded-lg resize-none dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                   placeholder="Tell me about your project or just say hello..."
                 />
               </div>
@@ -266,7 +272,7 @@ const ContactSection = forwardRef((_, ref) => {
               <input
                 type="hidden"
                 name="to_email"
-                value="alanpjpnc@gmail.com"
+                value={import.meta.env.VITE_To_Email}
               />
 
               <button
