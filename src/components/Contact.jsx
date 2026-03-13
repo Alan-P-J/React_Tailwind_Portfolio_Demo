@@ -19,7 +19,6 @@ const contactMethods = [
     label: "Email",
     value: "alanpjpnc@gmail.com",
     link: "mailto:alanpjpnc@gmail.com",
-    gradient: "from-blue-500 to-red-500",
     color: "text-red-500",
   },
   {
@@ -28,7 +27,6 @@ const contactMethods = [
     value: "+91 7510189423 (WhatsApp available)",
     link: "tel:+917510189423",
     color: "text-red-500",
-    gradient: "from-red-400 to-red-600"
   },
   {
     icon: FaMapMarkerAlt,
@@ -150,7 +148,7 @@ const ContactSection = forwardRef((_, ref) => {
                   className="relative flex flex-col items-center justify-center p-6 text-center transition-all duration-300 bg-white shadow-md dark:bg-gray-800 rounded-2xl hover:shadow-2xl hover:-translate-y-1 group"
                 >
                   <div
-                    className={`flex items-center justify-center w-14 h-14 mb-4 rounded-full bg-gradient-to-tr from-blue-500 ${method.gradient} dark:from-gray-700 dark:to-gray-600 text-white shadow-md group-hover:scale-110 transition-transform`}
+                    className={`flex items-center justify-center w-14 h-14 mb-4 rounded-full bg-gradient-to-tr from-blue-500 dark:from-gray-700 dark:to-gray-600 text-white shadow-md group-hover:scale-110 transition-transform`}
                   >
                     <method.icon size={24} />
                   </div>
@@ -180,7 +178,7 @@ const ContactSection = forwardRef((_, ref) => {
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`p-3 text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800 rounded-lg transition-all duration-300  hover:scale-110 ${social.color}`}
+                    className={`p-3 text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800 rounded-lg transition-all duration-300  hover:scale-110 ${social.color} ${social.label}`}
                     aria-label={social.label}
                   >
                     <social.icon size={20} />
