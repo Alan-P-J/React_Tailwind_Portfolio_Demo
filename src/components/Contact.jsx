@@ -301,3 +301,4 @@ const ContactSection = forwardRef((_, ref) => {
 });
 
 export default ContactSection;
+ContactSection.displayName = "Contact";

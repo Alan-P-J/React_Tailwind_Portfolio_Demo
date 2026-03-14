@@ -11,7 +11,6 @@ const Header = forwardRef(
       if (saved !== null) {
         return JSON.parse(saved); // will be true or false
       }
-      console.log("No saved theme, using system preference");
       return window.matchMedia("(prefers-color-scheme: dark)").matches;
     };
 
@@ -60,13 +59,15 @@ const Header = forwardRef(
               alt="Logo"
               className="mr-5 rounded-full max-md:hidden h-11 w-11"
             />
-            <p className="flex items-center justify-center pl-1 text-2xl font-bold text-white duration-500 dark:text-black demo max-md:pt-2">
+            <p className="text-2xl font-bold text-white dark:text-black demo max-md:pt-2">
               Alan
             </p>
           </div>
           <div
             className={`${
-              menuOpen ? "flex" : "flex opacity-0 pointer-events-none"
+              menuOpen
+                ? "flex opacity-100 translate-y-0"
+                : "flex opacity-0 pointer-events-none"
             } absolute left-0 top-18 gap-3 text-black duration-500 flex-col md:flex justify-center w-full bg-white/10 backdrop-blur-md md:backdrop-blur-none
    p-4
   md:static md:flex-row md:justify-start md:opacity-100 md:pointer-events-auto md:w-auto md:bg-transparent md:dark:bg-transparent md:rounded-none md:p-0
@@ -97,7 +98,10 @@ const Header = forwardRef(
           </div>
           <button
             onClick={toggleDarkMode}
-            className="mt-1 mr-1 w-12 h-12 flex items-center justify-center cursor-pointer text-white bg-[#01497c] border-none rounded-full outline-none dark:bg-gray-400 dark:text-black duration-500"
+            aria-label={
+              darkMode ? "Switch to light mode" : "Switch to dark mode"
+            }
+            className="flex items-center justify-center w-12 h-12 mt-1 mr-1 text-white duration-500 bg-blue-900 border-none rounded-full outline-none cursor-pointer dark:bg-gray-400 dark:text-black "
           >
             <div className="relative w-6 h-6">
               {/* Light Mode Icon */}
@@ -121,3 +125,5 @@ const Header = forwardRef(
 );
 
 export default Header;
+
+Header.displayName = "Header";
