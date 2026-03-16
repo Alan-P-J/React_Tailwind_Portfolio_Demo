@@ -1,129 +1,246 @@
 import { useState, useEffect, forwardRef } from "react";
 import { RiMenu2Line } from "react-icons/ri";
 import { IoCloseOutline } from "react-icons/io5";
-import { CiDark } from "react-icons/ci";
-import { CiLight } from "react-icons/ci";
+import { CiDark, CiLight } from "react-icons/ci";
 import Logo from "../assets/file.svg";
+
+const NAV_SECTIONS = ["home", "about", "skills", "project", "contact"];
+
+/* Get initial theme */
+const getInitialDarkMode = () => {
+  if (typeof window === "undefined") return false;
+
+  const saved = localStorage.getItem("darkMode");
+  if (saved !== null) return JSON.parse(saved);
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+};
+
 const Header = forwardRef(
   ({ setActiveSection, activeSection, sectionRefs }, ref) => {
-    const getInitialDarkMode = () => {
-      const saved = localStorage.getItem("darkMode");
-      if (saved !== null) {
-        return JSON.parse(saved); // will be true or false
-      }
-      return window.matchMedia("(prefers-color-scheme: dark)").matches;
-    };
-
-    const [darkMode, setDarkMode] = useState(() => getInitialDarkMode());
+    const [darkMode, setDarkMode] = useState(getInitialDarkMode);
     const [menuOpen, setMenuOpen] = useState(false);
-    // Apply theme to document root
+    const [scrolled, setScrolled] = useState(false);
+
+    /* Apply theme */
     useEffect(() => {
       document.documentElement.classList.toggle("dark", darkMode);
     }, [darkMode]);
+
+    /* Detect scroll */
+    useEffect(() => {
+      const handleScroll = () => setScrolled(window.scrollY > 20);
+
+      window.addEventListener("scroll", handleScroll, { passive: true });
+
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     const toggleDarkMode = () => {
       setDarkMode((prev) => {
-        const newValue = !prev;
-        localStorage.setItem("darkMode", JSON.stringify(newValue));
-        return newValue;
+        const next = !prev;
+        localStorage.setItem("darkMode", JSON.stringify(next));
+        return next;
       });
     };
 
+    const handleNavClick = (section) => {
+      setActiveSection(section);
+
+      sectionRefs?.[section]?.current?.scrollIntoView({
+        behavior: "smooth",
+      });
+
+      setMenuOpen(false);
+    };
+
     return (
-      <div
+      <header
         ref={ref}
-        className="z-50 fixed md:top-5 md:left-[2.5%] h-18 w-full md:w-[95%] max-md:rounded-none md:rounded-full
-  text-black dark:text-black transition-colors duration-500
-  bg-gray-600/70 dark:bg-white/70 rounded"
+        className={`fixed z-50 w-full md:w-[95%] md:left-[2.5%] md:top-4
+        transition-all duration-500
+        ${
+          scrolled
+            ? "md:rounded-full bg-white/80 dark:bg-gray-900/90 shadow-lg backdrop-blur-md"
+            : "md:rounded-full bg-white/60 dark:bg-gray-900/70 backdrop-blur-md"
+        }
+        max-md:bg-white/90 dark:max-md:bg-gray-900/90 max-md:backdrop-blur-md`}
       >
-        <header className="flex justify-between p-2">
-          {/* home, about, projects, contact links */}
-          <button
-            className="p-2 pt-4 text-white rounded-md cursor-pointer md:justify-self-start top-4 left-4 dark:text-black md:hidden max-md:flex"
-            onClick={() => setMenuOpen(!menuOpen)}
+        {/* NAVBAR */}
+        <nav
+          className="flex items-center justify-between px-4 py-2 md:px-6"
+          aria-label="Main navigation"
+        >
+          {/* LOGO */}
+          <a
+            href="#home"
+            onClick={() => handleNavClick("home")}
+            className="flex items-center gap-2 rounded-lg group focus:outline-none focus:ring-2 focus:ring-blue-500"
+            aria-label="Go to home"
           >
-            <div className="relative w-6 h-6">
+            <img
+              src={Logo}
+              alt=""
+              aria-hidden="true"
+              className="hidden transition-transform duration-300 rounded-full md:block w-9 h-9 group-hover:scale-110"
+            />
+
+            <span className="text-xl font-bold text-gray-900 transition-colors dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-400">
+              Alan
+            </span>
+
+            <span className="hidden text-xl font-bold text-blue-500 transition-colors md:inline group-hover:text-blue-400">
+              P J
+            </span>
+          </a>
+
+          {/* DESKTOP NAV */}
+          <ul className="items-center hidden gap-1 md:flex" role="list">
+            {NAV_SECTIONS.map((section) => {
+              const isActive = activeSection === section;
+
+              return (
+                <li key={section}>
+                  <a
+                    href={`#${section}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(section);
+                    }}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`relative px-4 py-2 text-sm font-semibold rounded-xl
+                    transition-all duration-300 focus:outline-none
+                    focus:ring-2 focus:ring-blue-500
+                    ${
+                      isActive
+                        ? "text-blue-500 dark:text-blue-400"
+                        : "text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                    }`}
+                  >
+                    {/* Hover background */}
+                    <span
+                      aria-hidden="true"
+                      className={`absolute inset-0 rounded-xl transition-all duration-300 pointer-events-none
+                      ${
+                        isActive
+                          ? "bg-blue-50 dark:bg-blue-900/30"
+                          : "hover:bg-gray-100 dark:hover:bg-gray-800/50"
+                      }`}
+                    />
+
+                    {/* Text */}
+                    <span className="relative z-10 capitalize">
+                      {section}
+                    </span>
+
+                    {/* Active underline */}
+                    {isActive && (
+                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-blue-500 rounded-full" />
+                    )}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* RIGHT CONTROLS */}
+          <div className="flex items-center gap-2">
+            {/* DARK MODE */}
+            <button
+              onClick={toggleDarkMode}
+              aria-label="Toggle dark mode"
+              className="relative flex items-center justify-center w-10 h-10 text-gray-700 transition-all duration-300 border border-gray-200 rounded-full dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <CiDark
+                size={20}
+                className={`absolute transition-all duration-500
+                ${
+                  darkMode
+                    ? "opacity-100 rotate-0 scale-100"
+                    : "opacity-0 rotate-90 scale-75"
+                }`}
+              />
+
+              <CiLight
+                size={20}
+                className={`absolute transition-all duration-500
+                ${
+                  darkMode
+                    ? "opacity-0 -rotate-90 scale-75"
+                    : "opacity-100 rotate-0 scale-100"
+                }`}
+              />
+            </button>
+
+            {/* MOBILE MENU BUTTON */}
+            <button
+              onClick={() => setMenuOpen((prev) => !prev)}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              aria-label="Toggle menu"
+              className="relative flex items-center justify-center w-10 h-10 text-gray-800 transition-all duration-300 rounded-full md:hidden dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
               <IoCloseOutline
-                className={`absolute inset-0 transform text-xl transition-all duration-500
-      ${menuOpen ? "opacity-100 rotate-0" : "opacity-0 rotate-90"}`}
+                size={22}
+                className={`absolute transition-all duration-300
+                ${menuOpen ? "opacity-100 rotate-0" : "opacity-0 rotate-90"}`}
               />
 
               <RiMenu2Line
-                className={`absolute inset-0 transform text-xl transition-all duration-500
-      ${menuOpen ? "opacity-0 -rotate-90" : "opacity-100 rotate-0"}`}
+                size={20}
+                className={`absolute transition-all duration-300
+                ${menuOpen ? "opacity-0 -rotate-90" : "opacity-100 rotate-0"}`}
               />
-            </div>
-          </button>
-          <div className="flex items-center gap-2 pl-1">
-            <img
-              src={Logo}
-              alt="Logo"
-              className="mr-5 rounded-full max-md:hidden h-11 w-11"
-            />
-            <p className="text-2xl font-bold text-white dark:text-black demo max-md:pt-2">
-              Alan
-            </p>
+            </button>
           </div>
-          <div
-            className={`${
-              menuOpen
-                ? "flex opacity-100 translate-y-0"
-                : "flex opacity-0 pointer-events-none"
-            } absolute left-0 top-18 gap-3 text-black duration-500 flex-col md:flex justify-center w-full bg-white/10 backdrop-blur-md md:backdrop-blur-none
-   p-4
-  md:static md:flex-row md:justify-start md:opacity-100 md:pointer-events-auto md:w-auto md:bg-transparent md:dark:bg-transparent md:rounded-none md:p-0
-  dark:text-white`}
+        </nav>
+
+        {/* MOBILE MENU */}
+        <div
+          id="mobile-menu"
+          className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out
+          ${menuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
+        >
+          <ul
+            className="flex flex-col gap-1 px-4 pt-2 border-t border-gray-200 pb-1-4 dark:border-gray-700"
+            role="list"
           >
-            {["home", "about", "skills", "project", "contact"].map(
-              (section) => (
-                <a
-                  key={section}
-                  className={` p-4 mr-4 font-bold cursor-pointer border-none no-underline duration-500 border hover:border-blue-600 rounded-2xl hover:bg-blue-400  ${
-                    activeSection === section
-                      ? "text-blue-400 active"
-                      : " dark:md:text-gray-700 text-gray-800 dark:text-white md:text-white hover:bg-gray-200 "
-                  }
-              `}
-                  onClick={() => {
-                    setActiveSection(section);
-                    sectionRefs?.[section]?.current.scrollIntoView({
-                      behavior: "smooth",
-                    });
-                    setMenuOpen(false);
-                  }}
-                >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                </a>
-              ),
-            )}
-          </div>
-          <button
-            onClick={toggleDarkMode}
-            aria-label={
-              darkMode ? "Switch to light mode" : "Switch to dark mode"
-            }
-            className="flex items-center justify-center w-12 h-12 mt-1 mr-1 text-white duration-500 bg-blue-900 border-none rounded-full outline-none cursor-pointer dark:bg-gray-400 dark:text-black "
-          >
-            <div className="relative w-6 h-6">
-              {/* Light Mode Icon */}
-              <CiDark
-                className={`absolute inset-0 m-auto transition-all duration-500 transform
-        ${darkMode ? "opacity-100 rotate-0" : "opacity-0 rotate-90"}`}
-                size={25}
-              />
-              {/* Dark Mode Icon */}
-              <CiLight
-                className={`absolute inset-0 m-auto transition-all duration-500 transform
-        ${darkMode ? "opacity-0 -rotate-90" : "opacity-100 rotate-0"}`}
-                size={25}
-              />
-            </div>
-          </button>
-        </header>
-      </div>
+            {NAV_SECTIONS.map((section) => {
+              const isActive = activeSection === section;
+
+              return (
+                <li key={section}>
+                  <a
+                    href={`#${section}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(section);
+                    }}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold
+                    transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500
+                    ${
+                      isActive
+                        ? "bg-blue-500/20 text-blue-500 border-l-2 border-blue-500"
+                        : "text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
+                    }`}
+                  >
+                    {isActive && (
+                      <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
+                    )}
+
+                    <span className="capitalize">{section}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </header>
     );
-  },
+  }
 );
 
-export default Header;
-
 Header.displayName = "Header";
+
+export default Header;

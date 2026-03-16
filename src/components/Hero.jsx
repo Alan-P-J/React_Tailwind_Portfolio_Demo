@@ -15,7 +15,7 @@ const Hero = forwardRef((_, ref) => {
     <section
       ref={ref}
       id="home"
-      className="relative pt-28 md:pt-24 flex items-center justify-center min-h-screen
+      className="relative pt-28 md:pt-20 flex items-center justify-center min-h-screen
         bg-[linear-gradient(to_top,#cfd9df_0%,#e2ebf0_100%)]
         dark:bg-[radial-gradient(125%_125%_at_50%_90%,_#000000_40%,_#0d1a36_100%)]"
     >

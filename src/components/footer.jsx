@@ -13,7 +13,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="text-gray-600 bg-gray-200 dark:bg-gray-900">
+    <footer className="text-gray-600 duration-300 bg-gray-200 dark:bg-gray-900">
 
       <div className="container px-6 py-10 mx-auto">
         <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
@@ -63,7 +63,7 @@ const Footer = () => {
 
       {/* Bottom bar */}
       <div className="py-4 border-t border-gray-500">
-        <div className="container flex flex-col items-center justify-between gap-2 px-6 mx-auto text-xs text-gray-800 sm:flex-row">
+        <div className="container flex flex-col items-center justify-between gap-2 px-6 mx-auto text-xs text-gray-500 sm:flex-row">
           <p>© {currentYear} Alan P J. All rights reserved.</p>
           
             <a href="#home"
