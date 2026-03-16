@@ -25,7 +25,7 @@ import { MdApi, MdOutlineErrorOutline, MdOutlineLoop } from "react-icons/md";
 import { RiShieldKeyholeLine, RiTailwindCssFill } from "react-icons/ri";
 import { IoLogoJavascript } from "react-icons/io";
 
-const Skills = forwardRef((props, ref) => {
+const Skills = forwardRef(() => {
   const techIcons = {
     // Backend
     Java: FaJava,
@@ -135,7 +135,7 @@ const Skills = forwardRef((props, ref) => {
   ];
   return (
     <section
-      ref={ref}
+      // ref={ref}
       className="py-20 transition-colors duration-300 bg-gray-100 md:pt-12 dark:bg-gray-900"
     >
       <div className="container px-4 mx-auto">

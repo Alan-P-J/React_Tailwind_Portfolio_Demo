@@ -37,7 +37,7 @@ const QUICK_FACTS = [
 const AboutMe = forwardRef((_, ref) => {
   return (
     <section
-      ref={ref}
+      ref={ref.about}
       id="about"
       className="py-16 bg-white md:pt-33 dark:bg-gray-900"
     >
@@ -152,6 +152,7 @@ const AboutMe = forwardRef((_, ref) => {
 
             {/* CTA button */}
             <button
+            ref={ref.skills}
               onClick={() => scrollToSection("project")}
               aria-label="View projects section"
               className="mt-2 inline-flex items-center gap-2 px-6 py-3 font-semibold
