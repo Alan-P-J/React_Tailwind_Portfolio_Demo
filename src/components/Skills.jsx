@@ -24,7 +24,6 @@ import { SiSpringboot, SiPostgresql, SiMysql, SiPostman } from "react-icons/si";
 import { MdApi, MdOutlineErrorOutline, MdOutlineLoop } from "react-icons/md";
 import { RiShieldKeyholeLine, RiTailwindCssFill } from "react-icons/ri";
 import { IoLogoJavascript } from "react-icons/io";
-import {} from "react-icons/fa";
 
 const Skills = forwardRef((props, ref) => {
   const techIcons = {
@@ -137,7 +136,6 @@ const Skills = forwardRef((props, ref) => {
   return (
     <section
       ref={ref}
-      id="skills"
       className="py-20 transition-colors duration-300 bg-gray-100 md:pt-12 dark:bg-gray-900"
     >
       <div className="container px-4 mx-auto">

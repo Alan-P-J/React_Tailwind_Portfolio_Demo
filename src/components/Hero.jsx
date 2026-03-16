@@ -3,15 +3,10 @@ import { FaArrowRight, FaEnvelope, FaChevronDown } from "react-icons/fa";
 import profileImg from "../assets/4300df04-1386-482a-b198-fc01290b561f.jpeg";
 import { TypeAnimation } from "react-type-animation";
 
-// ── Shared utility (move to src/utils/scroll.js if used elsewhere) ──
-const scrollToSection = (id) => {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-};
-
 // ── Static data outside component — no re-creation on every render ──
 const STATS = [
-  { value: "1",  label: "Years exp."   },
-  { value: "5+",  label: "Projects"     },
+  { value: "1", label: "Years exp." },
+  { value: "5+", label: "Projects" },
   { value: "28+", label: "GitHub repos" },
 ];
 
@@ -26,10 +21,8 @@ const Hero = forwardRef((_, ref) => {
     >
       <div className="container relative z-10 px-4 mx-auto sm:px-6 lg:px-8">
         <div className="flex flex-col-reverse items-center justify-between gap-12 pt-7 lg:flex-row">
-
           {/* ── Text Content ── */}
           <div className="flex-1 text-center lg:text-left">
-
             {/* UAE availability badge */}
             {/* <span className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-sm font-medium
               text-green-700 bg-green-100 rounded-full
@@ -47,14 +40,20 @@ const Hero = forwardRef((_, ref) => {
             </h1>
 
             {/* Animated role — min-h prevents layout shift at all breakpoints */}
-            <h2 className="mb-6 text-2xl font-semibold text-[#0767ac] md:text-3xl
-              min-h-[2.5rem] md:min-h-[3rem]">
+            <h2
+              className="mb-6 text-2xl font-semibold text-[#0767ac] md:text-3xl
+              min-h-[2.5rem] md:min-h-[3rem]"
+            >
               <TypeAnimation
                 sequence={[
-                  "Software Engineer",        2000,
-                  "Java Backend Developer",   2000,
-                  "Full Stack Developer",     2000,
-                  "Spring Boot Specialist",   2000,
+                  "Software Engineer",
+                  2000,
+                  "Java Backend Developer",
+                  2000,
+                  "Full Stack Developer",
+                  2000,
+                  "Spring Boot Specialist",
+                  2000,
                 ]}
                 wrapper="span"
                 speed={50}
@@ -71,40 +70,30 @@ const Hero = forwardRef((_, ref) => {
 
             {/* ── CTA Buttons ── */}
             <div className="flex flex-wrap justify-center gap-4 md:justify-start">
-
-              {/* View Projects — slide-fill animation */}
-              <button
-                onClick={() => scrollToSection("project")}
+              <a
+                href="#project"
                 aria-label="View projects section"
-                className="relative overflow-hidden flex items-center gap-2 px-8 py-3
-                  font-semibold text-[#01497c] border border-[#01497c] rounded-lg
-                  cursor-pointer transition-all duration-500 group hover:border-[#0767ac]
-                  focus:outline-none focus:ring-2 focus:ring-[#0767ac] focus:ring-offset-2"
+                className="relative overflow-hidden flex items-center gap-2 px-8 py-3 font-semibold text-[#01497c] border border-[#01497c] rounded-lg transition-all duration-500 group hover:border-[#0767ac] focus:outline-none focus:ring-2 focus:ring-[#0767ac] focus:ring-offset-2"
               >
+                {" "}
                 <span className="relative z-10 flex items-center gap-2 transition-colors duration-500 group-hover:text-white">
-                  View My Projects
-                  <FaArrowRight aria-hidden="true" />
-                </span>
-                {/* Sliding fill layer */}
+                  {" "}
+                  View My Projects <FaArrowRight aria-hidden="true" />{" "}
+                </span>{" "}
                 <span
                   aria-hidden="true"
-                  className="absolute inset-0 bg-[#01497c] translate-y-full
-                    group-hover:translate-y-0 transition-transform duration-500 ease-in-out"
-                />
-              </button>
-
-              {/* Hire Me */}
-              <button
-                onClick={() => scrollToSection("contact")}
+                  className="absolute inset-0 bg-[#01497c] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"
+                />{" "}
+              </a>{" "}
+              <a
+                href="#contact"
                 aria-label="Go to contact section"
-                className="flex items-center gap-2 px-6 py-3 font-semibold
-                  text-white bg-[#01497c] rounded-lg shadow-md
-                  hover:bg-[#0767ac] cursor-pointer transition-all duration-300
-                  focus:outline-none focus:ring-2 focus:ring-[#0767ac] focus:ring-offset-2"
+                className="flex items-center gap-2 px-6 py-3 font-semibold text-white bg-[#01497c] rounded-lg shadow-md hover:bg-[#0767ac] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0767ac] focus:ring-offset-2"
               >
-                <FaEnvelope className="text-base" aria-hidden="true" />
-                Hire Me
-              </button>
+                {" "}
+                <FaEnvelope className="text-base" aria-hidden="true" /> Hire
+                Me{" "}
+              </a>{" "}
             </div>
 
             {/* ── Stats row ── */}
@@ -129,13 +118,11 @@ const Hero = forwardRef((_, ref) => {
                 </div>
               ))}
             </div>
-
           </div>
 
           {/* ── Profile Image ── */}
           <div className="flex justify-center flex-1">
             <div className="relative w-64 h-64 md:w-80 md:h-80">
-
               {/* Decorative gradient ring */}
               <div
                 aria-hidden="true"
@@ -153,9 +140,11 @@ const Hero = forwardRef((_, ref) => {
               />
 
               {/* Open to work badge */}
-              <div className="absolute bottom-3 right-3 z-20 flex items-center gap-2
+              <div
+                className="absolute bottom-3 right-3 z-20 flex items-center gap-2
                 bg-white dark:bg-gray-800 rounded-full px-3 py-1.5 shadow-lg
-                border border-gray-100 dark:border-gray-700">
+                border border-gray-100 dark:border-gray-700"
+              >
                 <span
                   className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"
                   aria-hidden="true"
@@ -164,10 +153,8 @@ const Hero = forwardRef((_, ref) => {
                   Open to work
                 </span>
               </div>
-
             </div>
           </div>
-
         </div>
       </div>
 
@@ -181,7 +168,6 @@ const Hero = forwardRef((_, ref) => {
         </span>
         <FaChevronDown className="text-gray-400 dark:text-gray-500" size={16} />
       </div>
-
     </section>
   );
 });
