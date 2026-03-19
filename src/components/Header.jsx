@@ -36,6 +36,31 @@ const Header = forwardRef(
       return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    useEffect(() => {
+      const observers = [];
+
+      NAV_SECTIONS.forEach((section) => {
+        const el = sectionRefs?.[section]?.current;
+        if (!el) return;
+
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setActiveSection(section);
+            }
+          },
+          {
+            threshold: 0.3, // section must be 30% visible to trigger
+            rootMargin: "-80px 0px 0px 0px", // offset for fixed header height
+          },
+        );
+
+        observer.observe(el);
+        observers.push(observer);
+      });
+      return () => observers.forEach((obs) => obs.disconnect());
+    }, [sectionRefs, setActiveSection]);
+    
     const toggleDarkMode = () => {
       setDarkMode((prev) => {
         const next = !prev;
@@ -129,9 +154,7 @@ const Header = forwardRef(
                     />
 
                     {/* Text */}
-                    <span className="relative z-10 capitalize">
-                      {section}
-                    </span>
+                    <span className="relative z-10 capitalize">{section}</span>
 
                     {/* Active underline */}
                     {isActive && (
@@ -238,7 +261,7 @@ const Header = forwardRef(
         </div>
       </header>
     );
-  }
+  },
 );
 
 Header.displayName = "Header";

@@ -15,7 +15,7 @@ const Hero = forwardRef((_, ref) => {
     <section
       ref={ref}
       id="home"
-      className="relative pt-28 md:pt-20 flex items-center justify-center min-h-screen
+      className="relative py-7 pt-16 md:pt-20 flex items-center justify-center min-h-screen
         bg-[linear-gradient(to_top,#cfd9df_0%,#e2ebf0_100%)]
         dark:bg-[radial-gradient(125%_125%_at_50%_90%,_#000000_40%,_#0d1a36_100%)]"
     >
@@ -160,7 +160,7 @@ const Hero = forwardRef((_, ref) => {
 
       {/* ── Scroll indicator ── */}
       <div
-        className="absolute flex flex-col items-center gap-1 -translate-x-1/2 bottom-8 left-1/2 animate-bounce"
+        className="absolute flex-col items-center hidden gap-1 -translate-x-1/2 sm:flex bottom-8 left-1/2 animate-bounce"
         aria-hidden="true"
       >
         <span className="text-xs tracking-widest text-gray-400 uppercase dark:text-gray-500">

@@ -107,7 +107,7 @@ const ContactSection = forwardRef((_, ref) => {
     <section
       ref={ref}
       id="contact"
-      className="min-h-screen py-16 transition-colors duration-300 bg-gray-100 scroll-mt-24 md:pt-20 dark:bg-gray-900"
+      className="min-h-screen py-16 transition-colors bg-gray-100 duration-300 md:pt-3 scroll-mt-24 md:pb-7 dark:bg-gray-900"
     >
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
 
