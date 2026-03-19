@@ -1,15 +1,30 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, lazy, Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./App.css";
-import Hero from "./components/Hero";
+
+// ── Eager load — above the fold, must show instantly ──
 import Header from "./components/Header";
-import About from "./components/About";
-import ToTop from "./components/ToTop";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
-import Footer from "./components/footer";
+import Hero from "./components/Hero";
+import ToTop from "./components/ToTop"
+// ── Lazy load — below the fold, load only when needed ──
+const About = lazy(() => import("./components/About"));
+const Skills = lazy(() => import("./components/Skills"));
+const Projects = lazy(() => import("./components/Projects"));
+const Contact = lazy(() => import("./components/Contact"));
+const Footer = lazy(() => import("./components/Footer"));
+
+import "./App.css";
+
+// ── Simple section skeleton shown while loading ──
+const SectionSkeleton = () => (
+  <div className="flex items-center justify-center w-full min-h-screen bg-white dark:bg-gray-900 animate-pulse">
+    <div className="w-full max-w-4xl px-8 space-y-4">
+      <div className="w-48 h-8 mx-auto bg-gray-200 rounded-full dark:bg-gray-700" />
+      <div className="w-full h-4 bg-gray-200 rounded-full dark:bg-gray-700" />
+      <div className="w-3/4 h-4 mx-auto bg-gray-200 rounded-full dark:bg-gray-700" />
+    </div>
+  </div>
+);
 
 function App() {
   const [activeSection, setActiveSection] = useState("home");
@@ -74,11 +89,22 @@ function App() {
         sectionRefs={sectionRefs}
       ></Header>
       <Hero ref={sectionRefs.home} />
-      <About ref={sectionRefs} />
-      <Skills ref={sectionRefs.skills}></Skills>
-      <Projects ref={sectionRefs.project}></Projects>
-      <Contact ref={sectionRefs.contact}></Contact>
-      <Footer></Footer>
+      <Suspense fallback={<SectionSkeleton />}>
+        <About ref={sectionRefs} />
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <Skills ref={sectionRefs.skills} />
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <Projects ref={sectionRefs.project} />
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <Contact ref={sectionRefs.contact} />
+      </Suspense>
+      <Suspense fallback={<div className="h-24 bg-gray-800 animate-pulse" />}>
+        <Footer />
+      </Suspense>
+
       {isVisible && <ToTop></ToTop>}
       <ToastContainer
         position="top-right"
