@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useState, useMemo, useCallback, memo } from "react";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 import ecommerceImg from "../assets/Home.png";
@@ -137,24 +137,60 @@ const BADGE_STYLES = {
     "bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300",
 };
 
-const Projects = forwardRef((_, ref) => {
+// ── ClassName constants ──
+const FILTER_BUTTON_CLASSES = "px-4 py-2 rounded-full font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0767ac] focus:ring-offset-2";
+const PROJECT_CARD_CLASSES = "flex flex-col overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-lg hover:shadow-xl dark:bg-gray-800 hover:scale-[1.02]";
+const TECH_TAG_CLASSES = "inline-flex items-center px-3 py-1 text-xs font-medium text-[#0767ac] bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-200";
+const CODE_BUTTON_CLASSES = "flex items-center justify-center flex-1 gap-2 px-4 py-2 text-sm font-semibold text-gray-700 transition-colors bg-gray-100 rounded-lg hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-[#0767ac]";
+const LIVE_DEMO_BUTTON_CLASSES = "flex items-center justify-center flex-1 gap-2 px-4 py-2 text-sm font-semibold text-white bg-[#0767ac] rounded-lg hover:bg-[#01497c] transition-colors focus:outline-none focus:ring-2 focus:ring-[#0767ac]";
+const SHOW_MORE_BUTTON_CLASSES = "inline-flex items-center gap-2 px-8 py-3 font-semibold text-[#01497c] border border-[#01497c] rounded-lg hover:bg-[#01497c] hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0767ac] focus:ring-offset-2";
+
+const Projects = memo(forwardRef((_, ref) => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [showAll, setShowAll] = useState(false);
 
-  // ── Single clean filter + slice logic ──
-  const filtered =
+  // ── Memoized filtered projects ──
+  const filtered = useMemo(() =>
     activeCategory === "all"
       ? PROJECTS
       : PROJECTS.filter((p) =>
           Array.isArray(p.category)
             ? p.category.includes(activeCategory)
             : p.category === activeCategory,
-        );
+        ),
+    [activeCategory]
+  );
 
-  const displayProjects =
-    activeCategory === "all" && !showAll ? filtered.slice(0, 3) : filtered;
+  // ── Memoized display projects ──
+  const displayProjects = useMemo(() =>
+    activeCategory === "all" && !showAll ? filtered.slice(0, 3) : filtered,
+    [activeCategory, showAll, filtered]
+  );
 
-  // const hiddenCount = filtered.length - displayProjects.length;
+  // ── Memoized category counts ──
+  const categoryCounts = useMemo(() =>
+    CATEGORIES.map((cat) => ({
+      ...cat,
+      count: cat.id === "all"
+        ? PROJECTS.length
+        : PROJECTS.filter((p) =>
+            Array.isArray(p.category)
+              ? p.category.includes(cat.id)
+              : p.category === cat.id,
+          ).length,
+    })),
+    []
+  );
+
+  // ── Callbacks ──
+  const handleCategoryChange = useCallback((catId) => {
+    setActiveCategory(catId);
+    setShowAll(false);
+  }, []);
+
+  const toggleShowAll = useCallback(() => {
+    setShowAll((prev) => !prev);
+  }, []);
 
   return (
     <section
@@ -180,46 +216,29 @@ const Projects = forwardRef((_, ref) => {
 
         {/* ── Category filters ── */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {CATEGORIES.map((cat) => {
-            const count =
-              cat.id === "all"
-                ? PROJECTS.length
-                : PROJECTS.filter((p) =>
-                    Array.isArray(p.category)
-                      ? p.category.includes(cat.id)
-                      : p.category === cat.id,
-                  ).length;
-
-            return (
-              <button
-                key={cat.id}
-                onClick={() => {
-                  setActiveCategory(cat.id);
-                  setShowAll(false);
-                }}
-                aria-pressed={activeCategory === cat.id}
-                className={`px-4 py-2 rounded-full font-medium transition-all duration-300
-                  focus:outline-none focus:ring-2 focus:ring-[#0767ac] focus:ring-offset-2
-                  ${
-                    activeCategory === cat.id
-                      ? "bg-[#0767ac] text-white shadow-lg"
-                      : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-blue-50 dark:hover:bg-blue-900/20"
-                  }`}
+          {categoryCounts.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => handleCategoryChange(cat.id)}
+              aria-pressed={activeCategory === cat.id}
+              className={`${FILTER_BUTTON_CLASSES} ${
+                activeCategory === cat.id
+                  ? "bg-[#0767ac] text-white shadow-lg"
+                  : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-blue-50 dark:hover:bg-blue-900/20"
+              }`}
+            >
+              {cat.name}
+              <span
+                className={`ml-2 text-xs px-1.5 py-0.5 rounded-full ${
+                  activeCategory === cat.id
+                    ? "bg-white/20 text-white"
+                    : "bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400"
+                }`}
               >
-                {cat.name}
-                <span
-                  className={`ml-2 text-xs px-1.5 py-0.5 rounded-full
-                  ${
-                    activeCategory === cat.id
-                      ? "bg-white/20 text-white"
-                      : "bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400"
-                  }`}
-                >
-                  {count}
-                </span>
-              </button>
-            );
-          })}
+                {cat.count}
+              </span>
+            </button>
+          ))}
         </div>
 
         {/* ── Project cards grid ── */}
@@ -227,9 +246,7 @@ const Projects = forwardRef((_, ref) => {
           {displayProjects.map((project) => (
             <div
               key={project.id}
-              className="flex flex-col overflow-hidden transition-all duration-300
-                bg-white rounded-xl shadow-lg hover:shadow-xl dark:bg-gray-800
-                hover:scale-[1.02]"
+              className={PROJECT_CARD_CLASSES}
             >
               {/* ── Project image ── */}
               <div className="relative overflow-hidden aspect-video group">
@@ -246,8 +263,7 @@ const Projects = forwardRef((_, ref) => {
 
                 {/* Badge overlay on image */}
                 <span
-                  className={`absolute top-3 left-3 text-xs font-semibold
-                  px-2.5 py-1 rounded-full ${BADGE_STYLES[project.badge]}`}
+                  className={`absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full ${BADGE_STYLES[project.badge]}`}
                 >
                   {project.badge}
                 </span>
@@ -296,9 +312,7 @@ const Projects = forwardRef((_, ref) => {
                     {project.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="inline-flex items-center px-3 py-1 text-xs font-medium
-                          text-[#0767ac] bg-gray-100 rounded-full
-                          dark:bg-gray-700 dark:text-gray-200"
+                        className={TECH_TAG_CLASSES}
                       >
                         {tech}
                       </span>
@@ -315,11 +329,7 @@ const Projects = forwardRef((_, ref) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`View source code for ${project.title}`}
-                        className="flex items-center justify-center flex-1 gap-2 px-4 py-2
-                          text-sm font-semibold text-gray-700 transition-colors bg-gray-100
-                          rounded-lg hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200
-                          dark:hover:bg-gray-600 focus:outline-none focus:ring-2
-                          focus:ring-[#0767ac]"
+                        className={CODE_BUTTON_CLASSES}
                       >
                         <FaGithub size={14} aria-hidden="true" />
                         Code
@@ -330,10 +340,7 @@ const Projects = forwardRef((_, ref) => {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`View live demo for ${project.title}`}
-                          className="flex items-center justify-center flex-1 gap-2 px-4 py-2
-                            text-sm font-semibold text-white bg-[#0767ac] rounded-lg
-                            hover:bg-[#01497c] transition-colors focus:outline-none
-                            focus:ring-2 focus:ring-[#0767ac]"
+                          className={LIVE_DEMO_BUTTON_CLASSES}
                         >
                           <FaExternalLinkAlt size={12} aria-hidden="true" />
                           Live Demo
@@ -356,11 +363,8 @@ const Projects = forwardRef((_, ref) => {
         {activeCategory === "all" && filtered.length > 3 && (
           <div className="mt-12 text-center">
             <button
-              onClick={() => setShowAll((prev) => !prev)}
-              className="inline-flex items-center gap-2 px-8 py-3 font-semibold
-                text-[#01497c] border border-[#01497c] rounded-lg
-                hover:bg-[#01497c] hover:text-white transition-all duration-300
-                focus:outline-none focus:ring-2 focus:ring-[#0767ac] focus:ring-offset-2"
+              onClick={toggleShowAll}
+              className={SHOW_MORE_BUTTON_CLASSES}
             >
               {showAll ? "Show Less" : `Show All ${filtered.length} Projects`}
             </button>
@@ -369,7 +373,7 @@ const Projects = forwardRef((_, ref) => {
       </div>
     </section>
   );
-});
+}));
 
 Projects.displayName = "Projects";
 

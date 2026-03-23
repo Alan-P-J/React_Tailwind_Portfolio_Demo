@@ -1,4 +1,4 @@
-import { useState, useRef, forwardRef } from "react";
+import { useState, useRef, forwardRef, useCallback } from "react";
 import emailjs from "emailjs-com";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -58,65 +58,84 @@ const SOCIAL_LINKS = [
   },
 ];
 
+// ── ClassName constants ──
+const INPUT_CLASSES =
+  "w-full px-4 py-3 text-gray-700 transition-colors duration-300 bg-gray-100 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white";
+const LABEL_CLASSES =
+  "block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300";
+const CONTACT_CARD_CLASSES =
+  "relative flex flex-col items-center justify-center p-6 text-center transition-all duration-300 bg-white shadow-md dark:bg-gray-800 rounded-2xl hover:shadow-2xl hover:-translate-y-1 group focus:outline-none focus:ring-2 focus:ring-blue-500";
+const SOCIAL_LINK_CLASSES =
+  "p-3 text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500";
+const SUBMIT_BUTTON_CLASSES =
+  "flex items-center justify-center w-full gap-3 px-8 py-4 font-semibold text-white transition-all duration-300 bg-[#0767ac] rounded-lg hover:bg-blue-700 hover:shadow-lg hover:-translate-y-1 disabled:bg-blue-400 disabled:translate-y-0 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2";
+
 const ContactSection = forwardRef((_, ref) => {
   const formRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [lastSent, setLastSent]         = useState(0);
+  const [lastSent, setLastSent] = useState(0);
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const sendEmail = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    // Rate limiting — 1 message per minute
-    if (Date.now() - lastSent < 60000) {
-      toast.warn("Please wait a minute before sending again.");
-      return;
-    }
+      // Rate limiting — 1 message per minute
+      if (Date.now() - lastSent < 60000) {
+        toast.warn("Please wait a minute before sending again.");
+        return;
+      }
 
-    // Email format validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formRef.current.from_email.value)) {
-      toast.error("Please enter a valid email address.");
-      return;
-    }
+      // Email format validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formRef.current.from_email.value)) {
+        toast.error("Please enter a valid email address.");
+        return;
+      }
 
-    setIsSubmitting(true);
+      setIsSubmitting(true);
 
-    emailjs
-      .sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-      )
-      .then(
-        () => {
-          setIsSubmitting(false);
-          setLastSent(Date.now());
-          toast.success("Thanks for reaching out! I'll get back to you shortly.");
-          formRef.current.reset();
-        },
-        (error) => {
-          console.error("Email failed to send:", error.text);
-          setIsSubmitting(false);
-          toast.error("Something went wrong. Please try again.");
-        },
-      );
-  };
+      emailjs
+        .sendForm(
+          import.meta.env.VITE_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+          formRef.current,
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        )
+        .then(
+          () => {
+            setIsSubmitting(false);
+            setLastSent(Date.now());
+            toast.success(
+              "Thanks for reaching out! I'll get back to you shortly.",
+            );
+            formRef.current.reset();
+          },
+          (error) => {
+            console.error("Email failed to send:", error.text);
+            setIsSubmitting(false);
+            toast.error("Something went wrong. Please try again.");
+          },
+        );
+    },
+    [lastSent],
+  );
 
   return (
     <section
       ref={ref}
       id="contact"
-      className="min-h-screen py-16 transition-colors bg-gray-100 duration-300 md:pt-3 scroll-mt-24 md:pb-7 dark:bg-gray-900"
+      className="min-h-screen py-16 transition-colors duration-300 bg-gray-100 md:pt-3 scroll-mt-24 md:pb-7 dark:bg-gray-900"
     >
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
-
         {/* ── Section header ── */}
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
             Get In Touch
           </h2>
-          <div className="w-24 h-1 mx-auto mb-4 bg-blue-600" aria-hidden="true" />
+          <div
+            className="w-24 h-1 mx-auto mb-4 bg-blue-600"
+            aria-hidden="true"
+          />
           <p className="max-w-2xl mx-auto text-xl text-gray-600 dark:text-gray-400">
             Looking to hire a Java or Full Stack Developer? Let's connect and
             discuss how I can contribute to your team.
@@ -127,7 +146,6 @@ const ContactSection = forwardRef((_, ref) => {
         </div>
 
         <div className="grid gap-12 lg:grid-cols-2">
-
           {/* ── Left: contact info ── */}
           <div className="space-y-8">
             <div>
@@ -150,13 +168,15 @@ const ContactSection = forwardRef((_, ref) => {
                   href={method.link}
                   target={method.link.startsWith("http") ? "_blank" : "_self"}
                   rel="noopener noreferrer"
-                  className="relative flex flex-col items-center justify-center p-6 text-center transition-all duration-300 bg-white shadow-md dark:bg-gray-800 rounded-2xl hover:shadow-2xl hover:-translate-y-1 group focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={CONTACT_CARD_CLASSES}
                 >
                   {/* Icon circle — uses per-card gradient */}
-                  <div className={`flex items-center justify-center w-14 h-14 mb-4
+                  <div
+                    className={`flex items-center justify-center w-14 h-14 mb-4
                     rounded-full bg-gradient-to-tr ${method.gradient}
                     dark:from-gray-700 dark:to-gray-600 text-white shadow-md
-                    group-hover:scale-110 transition-transform duration-300`}>
+                    group-hover:scale-110 transition-transform duration-300`}
+                  >
                     <method.icon size={24} aria-hidden="true" />
                   </div>
 
@@ -189,10 +209,7 @@ const ContactSection = forwardRef((_, ref) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className={`p-3 text-gray-600 dark:text-gray-400 bg-white
-                      dark:bg-gray-800 rounded-lg transition-all duration-300
-                      hover:scale-110 hover:shadow-md ${color}
-                      focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                    className={`${SOCIAL_LINK_CLASSES} ${color}`}
                   >
                     <Icon size={20} aria-hidden="true" />
                   </a>
@@ -213,13 +230,9 @@ const ContactSection = forwardRef((_, ref) => {
           {/* ── Right: contact form ── */}
           <div className="p-8 bg-white shadow-lg h-fit dark:bg-gray-800 rounded-2xl">
             <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
-
               <div className="grid gap-6 sm:grid-cols-2">
                 <div>
-                  <label
-                    htmlFor="from_name"
-                    className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
-                  >
+                  <label htmlFor="from_name" className={LABEL_CLASSES}>
                     Your Name *
                   </label>
                   <input
@@ -228,15 +241,12 @@ const ContactSection = forwardRef((_, ref) => {
                     name="from_name"
                     required
                     placeholder="Enter your name"
-                    className="w-full px-4 py-3 text-gray-700 transition-colors duration-300 bg-gray-100 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                    className={INPUT_CLASSES}
                   />
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="from_email"
-                    className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
-                  >
+                  <label htmlFor="from_email" className={LABEL_CLASSES}>
                     Email Address *
                   </label>
                   <input
@@ -245,16 +255,13 @@ const ContactSection = forwardRef((_, ref) => {
                     name="from_email"
                     required
                     placeholder="your@email.com"
-                    className="w-full px-4 py-3 text-gray-700 transition-colors duration-300 bg-gray-100 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                    className={INPUT_CLASSES}
                   />
                 </div>
               </div>
 
               <div>
-                <label
-                  htmlFor="subject"
-                  className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
-                >
+                <label htmlFor="subject" className={LABEL_CLASSES}>
                   Subject *
                 </label>
                 <input
@@ -263,15 +270,12 @@ const ContactSection = forwardRef((_, ref) => {
                   name="subject"
                   required
                   placeholder="What's this about?"
-                  className="w-full px-4 py-3 text-gray-700 transition-colors duration-300 bg-gray-100 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  className={INPUT_CLASSES}
                 />
               </div>
 
               <div>
-                <label
-                  htmlFor="message"
-                  className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
-                >
+                <label htmlFor="message" className={LABEL_CLASSES}>
                   Message *
                 </label>
                 <textarea
@@ -280,7 +284,7 @@ const ContactSection = forwardRef((_, ref) => {
                   required
                   rows={6}
                   placeholder="Tell me about your project or just say hello..."
-                  className="w-full px-4 py-3 text-gray-700 transition-colors duration-300 bg-gray-100 border border-blue-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  className={`${INPUT_CLASSES} resize-none`}
                 />
               </div>
 
@@ -291,12 +295,7 @@ const ContactSection = forwardRef((_, ref) => {
                 disabled={isSubmitting}
                 aria-busy={isSubmitting}
                 aria-disabled={isSubmitting}
-                className="flex items-center justify-center w-full gap-3 px-8 py-4
-                  font-semibold text-white transition-all duration-300
-                  bg-[#0767ac] rounded-lg hover:bg-blue-700 hover:shadow-lg
-                  hover:-translate-y-1 disabled:bg-blue-400 disabled:translate-y-0
-                  disabled:cursor-not-allowed focus:outline-none focus:ring-2
-                  focus:ring-blue-500 focus:ring-offset-2"
+                className={SUBMIT_BUTTON_CLASSES}
               >
                 {isSubmitting ? (
                   <>
@@ -313,10 +312,8 @@ const ContactSection = forwardRef((_, ref) => {
                   </>
                 )}
               </button>
-
             </form>
           </div>
-
         </div>
       </div>
     </section>
