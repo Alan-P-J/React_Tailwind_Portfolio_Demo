@@ -196,7 +196,7 @@ const Projects = memo(forwardRef((_, ref) => {
     <section
       ref={ref}
       id="project"
-      className="min-h-screen py-16 transition-colors duration-300 scroll-mt-24 bg-gray-50 md:pb-7 md:pt-6 dark:bg-gray-900"
+      className="min-h-screen pb-10 transition-colors duration-300 scroll-mt-24 bg-gray-50 md:pb-7 md:pt-2 dark:bg-gray-900"
     >
       <div className="container px-6 mx-auto">
         {/* ── Section header ── */}

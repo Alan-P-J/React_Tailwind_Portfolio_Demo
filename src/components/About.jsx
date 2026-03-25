@@ -39,7 +39,7 @@ const AboutMe = forwardRef((_, ref) => {
     <section
       ref={ref.about}
       id="about"
-      className="py-16 bg-white pb-7 md:pt-33 dark:bg-gray-900"
+      className="py-16 bg-white pb-7 md:pt-28 dark:bg-gray-900"
     >
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
 
