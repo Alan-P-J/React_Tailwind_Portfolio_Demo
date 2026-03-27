@@ -217,13 +217,13 @@ const ContactSection = forwardRef((_, ref) => {
               </div>
 
               {/* Resume download */}
-              <a
+              {/* <a
                 href={`${import.meta.env.BASE_URL}Alan_PJ_Junior_Software_Engineer.pdf`}
                 download
                 className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-white transition-all duration-300 bg-blue-600 rounded-lg hover:bg-blue-700 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 Download Resume
-              </a>
+              </a> */}
             </div>
           </div>
 
