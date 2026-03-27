@@ -1,5 +1,5 @@
 import { forwardRef, memo } from "react";
-import { FaArrowRight, FaDownload } from "react-icons/fa";
+import { FaArrowRight, FaChevronDown, FaDownload } from "react-icons/fa";
 import profileImg from "../assets/profile-headshot.jpeg";
 import { TypeAnimation } from "react-type-animation";
 
@@ -30,7 +30,7 @@ const Hero = memo(
 
               {/* Animated role */}
               <h2 className="mb-6 text-2xl font-semibold text-[#0767ac] md:text-3xl min-h-[2.5rem] md:min-h-[3rem]">
-                 <TypeAnimation
+                <TypeAnimation
                   sequence={[
                     "Java Backend Developer",
                     2000,
@@ -195,6 +195,18 @@ const Hero = memo(
             to { transform: rotate(360deg); }
           }
         `}</style>
+        <div
+          className="absolute flex-col items-center hidden gap-1 -translate-x-1/2 sm:flex bottom-8 left-1/2 animate-bounce"
+          aria-hidden="true"
+        >
+          <span className="text-xs tracking-widest text-gray-400 uppercase dark:text-gray-500">
+            Scroll
+          </span>
+          <FaChevronDown
+            className="text-gray-400 dark:text-gray-500"
+            size={16}
+          />
+        </div>
       </section>
     );
   }),
