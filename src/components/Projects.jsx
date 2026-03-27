@@ -117,7 +117,7 @@ const PROJECTS = [
       "Task management system with an integrated admin module for task assignment, tracking, and team delegation. Designed to improve team accountability and project delivery.",
     role: null,
     image: TodoList,
-    category: "fullstack",
+    category: "frontend",
     features: [
       "Task assignment & tracking",
       "Admin-controlled workflows",

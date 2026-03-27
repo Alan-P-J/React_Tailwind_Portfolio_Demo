@@ -1,22 +1,13 @@
 import { forwardRef, memo } from "react";
-import { FaArrowRight, FaEnvelope, FaChevronDown } from "react-icons/fa";
-import profileImg from "../assets/4300df04-1386-482a-b198-fc01290b561f.jpeg";
+import { FaArrowRight, FaDownload } from "react-icons/fa";
+import profileImg from "../assets/profile-headshot.jpeg";
 import { TypeAnimation } from "react-type-animation";
 
-// ── Static data outside component — no re-creation on every render ──
 const STATS = [
-  { value: "1", label: "Years exp." },
+  { value: "1+", label: "Year", sub: "Enterprise systems" },
   { value: "5+", label: "Projects" },
   { value: "28+", label: "GitHub repos" },
 ];
-
-// ── ClassName constants ──
-const PRIMARY_BUTTON_CLASSES =
-  "relative overflow-hidden flex items-center gap-2 px-8 py-3 font-semibold text-[#01497c] border border-[#01497c] rounded-lg transition-all duration-500 group hover:border-[#0767ac] focus:outline-none focus:ring-2 focus:ring-[#0767ac] focus:ring-offset-2";
-const SECONDARY_BUTTON_CLASSES =
-  "flex items-center gap-2 px-6 py-3 font-semibold text-white bg-[#01497c] rounded-lg shadow-md hover:bg-[#0767ac] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0767ac] focus:ring-offset-2";
-const BADGE_CLASSES =
-  "absolute bottom-3 right-3 z-20 flex items-center gap-2 bg-white dark:bg-gray-800 rounded-full px-3 py-1.5 shadow-lg border border-gray-100 dark:border-gray-700";
 
 const Hero = memo(
   forwardRef((_, ref) => {
@@ -30,38 +21,24 @@ const Hero = memo(
       >
         <div className="container relative z-10 px-4 mx-auto sm:px-6 lg:px-8">
           <div className="flex flex-col-reverse items-center justify-between gap-12 pt-7 lg:flex-row">
-            {/* ── Text Content ── */}
+            {/* TEXT */}
             <div className="flex-1 text-center lg:text-left">
-              {/* UAE availability badge */}
-              {/* <span className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-sm font-medium
-              text-green-700 bg-green-100 rounded-full
-              dark:bg-green-900/30 dark:text-green-400">
-              <span
-                className="w-2 h-2 bg-green-500 rounded-full animate-pulse"
-                aria-hidden="true"
-              />
-              Available · Open to UAE Opportunities
-            </span> */}
-
               {/* Name */}
               <h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-6xl lg:text-8xl dark:text-white">
                 Alan P J
               </h1>
 
-              {/* Animated role — min-h prevents layout shift at all breakpoints */}
-              <h2
-                className="mb-6 text-2xl font-semibold text-[#0767ac] md:text-3xl
-              min-h-[2.5rem] md:min-h-[3rem]"
-              >
-                <TypeAnimation
+              {/* Animated role */}
+              <h2 className="mb-6 text-2xl font-semibold text-[#0767ac] md:text-3xl min-h-[2.5rem] md:min-h-[3rem]">
+                 <TypeAnimation
                   sequence={[
-                    "Software Engineer",
-                    2000,
                     "Java Backend Developer",
+                    2000,
+                    "Spring Boot Specialist",
                     2000,
                     "Full Stack Developer",
                     2000,
-                    "Spring Boot Specialist",
+                    "Enterprise Systems Builder",
                     2000,
                   ]}
                   wrapper="span"
@@ -70,42 +47,53 @@ const Hero = memo(
                 />
               </h2>
 
-              {/* Single punchy description */}
+              {/* Description */}
               <p className="max-w-xl mb-8 text-lg leading-relaxed text-gray-600 dark:text-gray-300">
                 Full Stack Developer specializing in Java, Spring Boot & React —
-                currently building enterprise payroll systems. Immediate joiner,
-                open to UAE relocation.
+                currently building enterprise payroll systems.
               </p>
 
-              {/* ── CTA Buttons ── */}
+              {/* CTA Buttons (V2 Style) */}
               <div className="flex flex-wrap justify-center gap-4 md:justify-start">
+                {/* Primary */}
                 <a
                   href="#project"
-                  aria-label="View projects section"
-                  className={PRIMARY_BUTTON_CLASSES}
+                  className="group relative overflow-hidden inline-flex items-center gap-2
+                    px-7 py-3 rounded-xl font-semibold text-white
+                    bg-[#01497c] hover:bg-[#0767ac]
+                    shadow-[0_4px_24px_rgba(1,73,124,0.35)]
+                    hover:shadow-[0_4px_32px_rgba(7,103,172,0.5)]
+                    transition-all duration-300"
                 >
-                  {" "}
-                  <span className="relative z-10 flex items-center gap-2 transition-colors duration-500 group-hover:text-white">
-                    {" "}
-                    View My Projects <FaArrowRight aria-hidden="true" />{" "}
-                  </span>{" "}
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-0 bg-[#01497c] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"
-                  />{" "}
-                </a>{" "}
+                  View Projects
+                  <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
+
+                {/* Secondary */}
                 <a
-                  href="#contact"
-                  aria-label="Go to contact section"
-                  className={SECONDARY_BUTTON_CLASSES}
+                  href={`${import.meta.env.BASE_URL}Alan_PJ_Junior_Software_Engineer.pdf`}
+                  download
+                  className="inline-flex items-center gap-2
+                    px-7 py-3 rounded-xl font-semibold
+                    text-[#01497c] dark:text-[#4da6e8]
+                    border-2 border-[#01497c]/40 dark:border-[#4da6e8]/40
+                    hover:border-[#01497c] dark:hover:border-[#4da6e8]
+                    hover:bg-[#01497c]/8 dark:hover:bg-[#4da6e8]/10
+                    transition-all duration-300"
                 >
-                  {" "}
-                  <FaEnvelope className="text-base" aria-hidden="true" /> Hire
-                  Me{" "}
-                </a>{" "}
+                  <FaDownload /> Download CV
+                </a>
+
+                {/* Contact */}
+                {/* <a
+                  href="#contact"
+                  className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-white transition-all duration-300 bg-gray-800 rounded-xl hover:bg-gray-900"
+                >
+                  <FaEnvelope /> Contact
+                </a> */}
               </div>
 
-              {/* ── Stats row ── */}
+              {/* Stats */}
               <div className="flex items-center justify-center gap-6 mt-10 md:justify-start">
                 {STATS.map((stat, i) => (
                   <div key={stat.label} className="flex items-center gap-6">
@@ -117,45 +105,82 @@ const Hero = memo(
                         {stat.label}
                       </div>
                     </div>
-                    {/* Divider — skip after last item */}
                     {i < STATS.length - 1 && (
-                      <div
-                        className="w-px h-8 bg-gray-300 dark:bg-gray-600"
-                        aria-hidden="true"
-                      />
+                      <div className="w-px h-8 bg-gray-300 dark:bg-gray-600" />
                     )}
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* ── Profile Image ── */}
-            <div className="flex justify-center flex-1">
-              <div className="relative w-64 h-64 md:w-80 md:h-80">
-                {/* Decorative gradient ring */}
+            {/* IMAGE (V2 STYLE APPLIED) */}
+            {/* ── Right: Profile image ── */}
+            <div
+              className="flex-shrink-0 flex justify-center
+                animate-[fadeSlideUp_0.8s_ease_both]"
+            >
+              <div className="relative">
+                {/* Outer rotating ring */}
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 scale-110 rounded-full bg-gradient-to-tr from-blue-400 to-blue-600 opacity-20 dark:opacity-30"
+                  className="absolute inset-0 -m-3 rounded-full
+                    border-2 border-dashed border-[#0767ac]/25 dark:border-[#4da6e8]/25
+                    animate-[spin_20s_linear_infinite]"
                 />
 
-                {/* Profile photo — eager load, explicit dims for CLS */}
-                <img
-                  src={profileImg}
-                  alt="Alan P J — Full Stack Developer, open to UAE opportunities"
-                  loading="eager"
-                  width={320}
-                  height={320}
-                  className="relative z-10 object-cover w-full h-full border-4 border-blue-100 rounded-full shadow-lg dark:border-blue-900"
+                {/* Background glow card */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 -m-1 rounded-full
+                    bg-gradient-to-br from-[#0767ac]/20 to-[#01497c]/10
+                    dark:from-[#4da6e8]/20 dark:to-[#0767ac]/10
+                    blur-sm"
                 />
+
+                {/* Profile image */}
+                <div
+                  className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden
+                  border-4 border-white dark:border-gray-800
+                  shadow-[0_20px_60px_rgba(1,73,124,0.25)] dark:shadow-[0_20px_60px_rgba(7,103,172,0.35)]"
+                >
+                  <img
+                    src={profileImg}
+                    alt="Alan P J — Full Stack Java Developer, open to UAE"
+                    loading="eager"
+                    width={320}
+                    height={320}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
 
                 {/* Open to work badge */}
-                <div className={BADGE_CLASSES}>
+                <div
+                  className="absolute bottom-4 -left-4 z-20
+                  flex items-center gap-2
+                  bg-white dark:bg-gray-800
+                  border border-gray-100 dark:border-gray-700
+                  rounded-full px-3.5 py-2
+                  shadow-lg"
+                >
                   <span
-                    className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"
+                    className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"
                     aria-hidden="true"
                   />
-                  <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">
+                  <span className="text-xs font-semibold text-gray-700 dark:text-gray-200 whitespace-nowrap">
                     Open to work
+                  </span>
+                </div>
+
+                {/* Floating tech pill */}
+                <div
+                  className="absolute -top-2 -right-6 z-20
+                  flex items-center gap-1.5
+                  bg-[#01497c] dark:bg-[#0767ac]
+                  rounded-full px-3.5 py-2
+                  shadow-lg"
+                >
+                  <span className="text-xs font-bold text-white whitespace-nowrap">
+                    Java · Spring Boot
                   </span>
                 </div>
               </div>
@@ -163,24 +188,16 @@ const Hero = memo(
           </div>
         </div>
 
-        {/* ── Scroll indicator ── */}
-        <div
-          className="absolute flex-col items-center hidden gap-1 -translate-x-1/2 sm:flex bottom-8 left-1/2 animate-bounce"
-          aria-hidden="true"
-        >
-          <span className="text-xs tracking-widest text-gray-400 uppercase dark:text-gray-500">
-            Scroll
-          </span>
-          <FaChevronDown
-            className="text-gray-400 dark:text-gray-500"
-            size={16}
-          />
-        </div>
+        {/* Animations */}
+        <style>{`
+          @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+        `}</style>
       </section>
     );
   }),
 );
-
-Hero.displayName = "Hero";
 
 export default Hero;

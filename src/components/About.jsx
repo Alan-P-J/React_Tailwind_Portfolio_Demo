@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { FaArrowRight } from "react-icons/fa";
-import profileImg from "../assets/4300df04-1386-482a-b198-fc01290b561f.jpeg";
+import profileImg from "../assets/profile-headshot.jpeg";
 
 const scrollToSection = (id) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -18,6 +18,11 @@ const QUICK_FACTS = [
     className: "font-medium text-green-600 dark:text-green-400",
   },
   {
+    label: "Visa Status",
+    value: "Indian national, eligible for employment visa",
+    className: "font-medium text-gray-900 dark:text-white",
+  },
+  {
     label: "Location",
     value: "Thrissur, Kerala, India",
     className: "font-medium text-gray-900 dark:text-white",
@@ -26,6 +31,13 @@ const QUICK_FACTS = [
     label: "Email",
     value: "alanpjpnc@gmail.com",
     className: "font-medium text-blue-600 dark:text-blue-400",
+    isEmail: true,
+  },
+  {
+    label: "LinkedIn",
+    value: "https://www.linkedin.com/in/alan-p-j-5747a1247/",
+    className: "font-medium text-blue-600 dark:text-blue-400",
+    isLinkedIn: true,
   },
   {
     label: "Languages",
@@ -42,7 +54,6 @@ const AboutMe = forwardRef((_, ref) => {
       className="py-16 bg-white pb-7 md:pt-28 dark:bg-gray-900"
     >
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
-
         {/* ── Section Header ── */}
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
@@ -52,15 +63,12 @@ const AboutMe = forwardRef((_, ref) => {
         </div>
 
         <div className="grid items-center gap-12 lg:grid-cols-2">
-
           {/* ── Left column: image + quick facts ── */}
           <div className="space-y-8">
-
             {/* Profile image with decorative background */}
             <div className="flex justify-center lg:justify-start">
               {/* Single relative wrapper so gradient + badge both anchor correctly */}
               <div className="relative w-80 h-80">
-
                 {/* Rotated gradient card behind image */}
                 <div
                   aria-hidden="true"
@@ -80,13 +88,12 @@ const AboutMe = forwardRef((_, ref) => {
                 {/* Experience badge — anchored to image wrapper */}
                 <div className="absolute z-20 p-4 bg-white border border-gray-100 shadow-xl -bottom-4 -right-4 dark:bg-gray-800 rounded-2xl dark:border-gray-700">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">1</div>
+                    <div className="text-2xl font-bold text-blue-600">1+</div>
                     <div className="text-sm text-gray-600 dark:text-gray-400">
                       Year Experience
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
 
@@ -96,32 +103,50 @@ const AboutMe = forwardRef((_, ref) => {
                 Quick Facts
               </h3>
               <dl className="space-y-3">
-                {QUICK_FACTS.map(({ label, value, className }) => (
-                  <div key={label} className="flex justify-between gap-4">
-                    <dt className="text-gray-600 dark:text-gray-400 shrink-0">
-                      {label}:
-                    </dt>
-                    <dd className={className}>{value}</dd>
-                  </div>
-                ))}
+                {QUICK_FACTS.map(
+                  ({ label, value, className, isEmail, isLinkedIn }) => (
+                    <div key={label} className="flex justify-between gap-4">
+                      <dt className="text-gray-600 dark:text-gray-400 shrink-0">
+                        {label}:
+                      </dt>
+                      <dd className={className}>
+                        {isEmail ? (
+                          <a href={`mailto:${value}`} className={className}>
+                            {value}
+                          </a>
+                        ) : isLinkedIn ? (
+                          <a
+                            href={value}
+                            className={className}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            LinkedIn Profile
+                          </a>
+                        ) : (
+                          value
+                        )}
+                      </dd>
+                    </div>
+                  ),
+                )}
               </dl>
             </div>
-
           </div>
 
           {/* ── Right column: bio + CTA ── */}
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-              My Journey in Tech
+              What I Build & How I Think
             </h3>
 
             <div className="space-y-4 leading-relaxed text-gray-600 dark:text-gray-300">
               <p>
-                I'm a Full Stack Developer with 1 year of hands-on experience
-                building enterprise-grade web applications using Java, Spring Boot,
-                and React. Currently contributing to a large-scale payroll and HR
-                system migration, with a strong focus on backend architecture and
-                API design.
+                I'm a Full Stack Developer with 1+ year of hands-on experience
+                building enterprise-grade web applications using Java, Spring
+                Boot, and React. Currently contributing to a large-scale payroll
+                and HR system migration, with a strong focus on backend
+                architecture and API design.
               </p>
               <p>
                 My core strengths include designing RESTful APIs, implementing
@@ -140,7 +165,15 @@ const AboutMe = forwardRef((_, ref) => {
 
             {/* Tech badge tags — replaces plain text tech stack line */}
             <div className="flex flex-wrap gap-2 pt-2">
-              {["Java", "Spring Boot", "JPA/Hibernate", "React", "PostgreSQL", "MySQL", "Git"].map((tech) => (
+              {[
+                "Java",
+                "Spring Boot",
+                "JPA/Hibernate",
+                "React",
+                "PostgreSQL",
+                "MySQL",
+                "Git",
+              ].map((tech) => (
                 <span
                   key={tech}
                   className="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded-full dark:bg-blue-900/40 dark:text-blue-300"
@@ -152,7 +185,7 @@ const AboutMe = forwardRef((_, ref) => {
 
             {/* CTA button */}
             <button
-            // ref={ref.skills}
+              // ref={ref.skills}
               onClick={() => scrollToSection("project")}
               aria-label="View projects section"
               className="mt-2 inline-flex items-center gap-2 px-6 py-3 font-semibold
@@ -163,7 +196,6 @@ const AboutMe = forwardRef((_, ref) => {
               View My Projects
               <FaArrowRight aria-hidden="true" />
             </button>
-
           </div>
         </div>
       </div>
