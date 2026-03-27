@@ -1,10 +1,16 @@
 import { forwardRef } from "react";
-import { FaArrowRight } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaCode,
+  FaLinkedin,
+  FaEnvelope,
+  FaBolt,
+  FaSeedling,
+  FaUsers,
+  FaBullseye,
+} from "react-icons/fa";
+import { MdMessage } from "react-icons/md";
 import profileImg from "../assets/profile-headshot.jpeg";
-
-const scrollToSection = (id) => {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-};
 
 const QUICK_FACTS = [
   {
@@ -45,82 +51,159 @@ const QUICK_FACTS = [
     className: "font-medium text-gray-900 dark:text-white",
   },
 ];
-
+const GROWTH_ITEMS = [
+  {
+    icon: FaBolt,
+    title: "Shipping fast",
+    desc: "1 year in real enterprise production taught me to write code that works under pressure, not just in demos.",
+  },
+  {
+    icon: FaSeedling,
+    title: "Always levelling up",
+    desc: "Actively picking up TypeScript, Docker & AWS — the tools every modern team runs on.",
+  },
+  {
+    icon: FaUsers,
+    title: "Team-first energy",
+    desc: "I thrive in fast-moving, collaborative environments where ideas go from whiteboard to browser quickly.",
+  },
+  {
+    icon: FaBullseye,
+    title: "Full stack ownership",
+    desc: "Comfortable owning a feature end-to-end — Spring Boot API to React UI — without waiting for a handoff.",
+  },
+];
 const AboutMe = forwardRef((_, ref) => {
   return (
     <section
       ref={ref.about}
       id="about"
-      className="py-16 bg-white pb-7 md:pt-28 dark:bg-gray-900"
+      className="relative py-10 overflow-hidden bg-white md:pt-28 md:pb-6 dark:bg-gray-900"
     >
-      <div className="container px-4 mx-auto sm:px-6 lg:px-8">
+      {/* ── Dot texture background ── */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "radial-gradient(rgba(7,103,172,0.07) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+      {/* Fade the dots out towards the edges */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0
+          bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,transparent_40%,white_100%)]
+          dark:bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,transparent_40%,#111827_100%)]"
+      />
+
+      <div className="container relative z-10 px-4 mx-auto sm:px-6 lg:px-8">
         {/* ── Section Header ── */}
         <div className="mb-16 text-center">
+          <span
+            className="inline-block text-xs font-bold tracking-[0.25em] uppercase
+            text-[#0767ac] dark:text-[#4da6e8] mb-3"
+          >
+            The person behind the code
+          </span>
           <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
             About Me
           </h2>
-          <div className="w-24 h-1 mx-auto bg-blue-600" aria-hidden="true" />
+          <div
+            className="w-16 h-1 mx-auto rounded-full bg-[#0767ac]"
+            aria-hidden="true"
+          />
         </div>
 
-        <div className="grid items-center gap-12 lg:grid-cols-2">
+        {/* ── Two-column layout ── */}
+        <div className="grid items-start gap-14 lg:grid-cols-2 mb-14">
           {/* ── Left column: image + quick facts ── */}
           <div className="space-y-8">
-            {/* Profile image with decorative background */}
+            {/* Profile photo */}
             <div className="flex justify-center lg:justify-start">
-              {/* Single relative wrapper so gradient + badge both anchor correctly */}
-              <div className="relative w-80 h-80">
-                {/* Rotated gradient card behind image */}
+              <div className="relative w-72 h-72 md:w-80 md:h-80">
+                {/* Accent background card */}
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 scale-105 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl rotate-6"
+                  className="absolute inset-0 scale-105 rounded-3xl rotate-3
+                    bg-gradient-to-br from-[#0767ac]/80 to-[#01497c]/90"
                 />
-
-                {/* Profile photo */}
                 <img
                   src={profileImg}
-                  alt="Alan P J — Full Stack Java Developer based in Kerala, open to UAE"
+                  alt="Alan P J — Junior Full Stack Developer, open to UAE"
                   loading="lazy"
                   width={320}
                   height={320}
-                  className="relative z-10 object-cover w-full h-full shadow-2xl rounded-2xl"
+                  className="relative z-10 object-cover w-full h-full shadow-2xl rounded-3xl"
                 />
-
-                {/* Experience badge — anchored to image wrapper */}
-                <div className="absolute z-20 p-4 bg-white border border-gray-100 shadow-xl -bottom-4 -right-4 dark:bg-gray-800 rounded-2xl dark:border-gray-700">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">1+</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
-                      Year Experience
-                    </div>
+                {/* Open to work badge */}
+                <div className="absolute z-20 px-4 py-3 text-center bg-white border border-gray-100 shadow-xl -bottom-4 -right-4 dark:bg-gray-800 dark:border-gray-700 rounded-2xl">
+                  <div className="flex items-center gap-2 justify-center mb-0.5">
+                    <span
+                      className="w-2 h-2 bg-green-500 rounded-full animate-pulse"
+                      aria-hidden="true"
+                    />
+                    <span className="text-xs font-bold text-gray-800 dark:text-white">
+                      Open to work
+                    </span>
                   </div>
+                  <div className="text-xs text-gray-400 dark:text-gray-500">
+                    UAE · Immediate joiner
+                  </div>
+                </div>
+                {/* Role pill */}
+                <div
+                  className="absolute z-20 -top-3 -left-3
+                  bg-[#01497c] rounded-full px-3.5 py-1.5 shadow-lg
+                  flex items-center gap-1.5"
+                >
+                  <FaCode
+                    size={10}
+                    className="text-white/80"
+                    aria-hidden="true"
+                  />
+                  <span className="text-xs font-bold text-white">
+                    Jr. Full Stack
+                  </span>
                 </div>
               </div>
             </div>
 
             {/* Quick Facts card */}
-            <div className="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">
-              <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">
+            <div className="p-6 border border-gray-100 rounded-2xl bg-gray-50 dark:bg-gray-800/60 dark:border-gray-700/50">
+              <h3
+                className="mb-4 text-xs font-bold uppercase tracking-[0.18em]
+                text-gray-400 dark:text-gray-500"
+              >
                 Quick Facts
               </h3>
-              <dl className="space-y-3">
+              <dl className="space-y-2.5">
                 {QUICK_FACTS.map(
                   ({ label, value, className, isEmail, isLinkedIn }) => (
-                    <div key={label} className="flex justify-between gap-4">
-                      <dt className="text-gray-600 dark:text-gray-400 shrink-0">
-                        {label}:
+                    <div
+                      key={label}
+                      className="flex items-start justify-between gap-4 text-sm"
+                    >
+                      <dt className="text-gray-400 dark:text-gray-500 shrink-0 min-w-[80px]">
+                        {label}
                       </dt>
-                      <dd className={className}>
+                      <dd className={`${className} text-right`}>
                         {isEmail ? (
-                          <a href={`mailto:${value}`} className={className}>
+                          <a
+                            href={`mailto:${value}`}
+                            className="hover:underline underline-offset-2"
+                          >
                             {value}
                           </a>
                         ) : isLinkedIn ? (
                           <a
                             href={value}
-                            className={className}
                             target="_blank"
                             rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 hover:underline underline-offset-2"
                           >
+                            <FaLinkedin size={11} aria-hidden="true" />
                             LinkedIn Profile
                           </a>
                         ) : (
@@ -131,71 +214,111 @@ const AboutMe = forwardRef((_, ref) => {
                   ),
                 )}
               </dl>
+
+              {/* One-tap contact shortcuts */}
+              <div className="flex gap-2 pt-4 mt-5 border-t border-gray-200 dark:border-gray-700">
+                <a
+                  href="mailto:alanpjpnc@gmail.com"
+                  className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg
+                    text-xs font-semibold text-gray-600 dark:text-gray-300
+                    bg-gray-100 dark:bg-gray-700
+                    hover:bg-[#0767ac] hover:text-white
+                    dark:hover:bg-[#0767ac] dark:hover:text-white
+                    transition-all duration-300"
+                >
+                  <FaEnvelope size={11} aria-hidden="true" /> Email
+                </a>
+                <a
+                  href="https://wa.me/917510189423"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg
+                    text-xs font-semibold text-gray-600 dark:text-gray-300
+                    bg-gray-100 dark:bg-gray-700
+                    hover:bg-green-500 hover:text-white
+                    dark:hover:bg-green-600 dark:hover:text-white
+                    transition-all duration-300"
+                >
+                  <MdMessage /> WhatsApp
+                </a>
+              </div>
             </div>
           </div>
 
-          {/* ── Right column: bio + CTA ── */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-              What I Build & How I Think
-            </h3>
-
-            <div className="space-y-4 leading-relaxed text-gray-600 dark:text-gray-300">
-              <p>
-                I'm a Full Stack Developer with 1+ year of hands-on experience
-                building enterprise-grade web applications using Java, Spring
-                Boot, and React. Currently contributing to a large-scale payroll
-                and HR system migration, with a strong focus on backend
-                architecture and API design.
+          {/* ══ RIGHT: bio + growth cards ══ */}
+          <div className="space-y-8">
+            {/* Bio */}
+            <div>
+              <h3 className="mb-1 text-2xl font-bold text-gray-900 dark:text-white">
+                Junior dev. Big appetite.
+              </h3>
+              <p className="text-sm font-medium text-[#0767ac] dark:text-[#4da6e8] mb-5">
+                Fresh chapter · Full Stack · UAE-bound
               </p>
-              <p>
-                My core strengths include designing RESTful APIs, implementing
-                business logic with Spring Boot and JPA/Hibernate, and working
-                with relational databases like PostgreSQL and MySQL. I follow
-                clean code practices and enjoy building scalable, maintainable
-                systems that solve real business problems.
-              </p>
-              <p>
-                On the frontend, I use React to build responsive, user-friendly
-                interfaces that integrate seamlessly with backend services. I
-                thrive in Agile teams, enjoy collaborating across roles, and
-                continuously push my technical depth forward.
-              </p>
+              <div className="space-y-4 text-[15px] leading-relaxed text-gray-600 dark:text-gray-300">
+                <p>
+                  Hey — I'm Alan, a Junior Full Stack Developer starting a new
+                  chapter with a year of real production experience already
+                  behind me. I've built and shipped features on an enterprise
+                  payroll system, which means I know what it feels like when
+                  code breaks in production at 9am on a Monday and you're the
+                  one who has to fix it.
+                </p>
+                <p>
+                  I'm looking for a collaborative, fast-moving team where I can
+                  absorb knowledge from experienced engineers, ship things that
+                  actually matter, and grow into a stronger developer week by
+                  week. I love teams with good energy — short standups, honest
+                  code reviews, and a shared obsession with making things work
+                  well.
+                </p>
+                <p>
+                  My foundation is{" "}
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    Java + Spring Boot + React
+                  </span>
+                  , and I'm actively learning{" "}
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    TypeScript, Docker & AWS
+                  </span>
+                  . I'm an immediate joiner,{" "}
+                  <span className="text-[#0767ac] dark:text-[#4da6e8] font-medium">
+                    ready to relocate to UAE
+                  </span>
+                  , and genuinely excited about what comes next.
+                </p>
+              </div>
             </div>
 
-            {/* Tech badge tags — replaces plain text tech stack line */}
-            <div className="flex flex-wrap gap-2 pt-2">
-              {[
-                "Java",
-                "Spring Boot",
-                "JPA/Hibernate",
-                "React",
-                "PostgreSQL",
-                "MySQL",
-                "Git",
-              ].map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded-full dark:bg-blue-900/40 dark:text-blue-300"
-                >
-                  {tech}
-                </span>
-              ))}
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {GROWTH_ITEMS.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={item.title}
+                    className="p-4 rounded-xl
+                    border border-gray-100 dark:border-gray-700/60
+                    bg-gray-50 dark:bg-gray-800/50
+                    hover:border-[#0767ac]/40 dark:hover:border-[#4da6e8]/30
+                    hover:-translate-y-0.5 hover:shadow-md
+                    transition-all duration-300"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <Icon
+                        className="text-[#0767ac] dark:text-[#4da6e8]"
+                        size={16}
+                      />
+                      <span className="text-sm font-semibold text-gray-800 dark:text-white">
+                        {item.title}
+                      </span>
+                    </div>
+                    <p className="text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+                      {item.desc}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
-
-            {/* CTA button */}
-            <button
-              // ref={ref.skills}
-              onClick={() => scrollToSection("project")}
-              aria-label="View projects section"
-              className="mt-2 inline-flex items-center gap-2 px-6 py-3 font-semibold
-                text-white bg-[#01497c] rounded-lg shadow-md
-                hover:bg-[#0767ac] transition-all duration-300
-                focus:outline-none focus:ring-2 focus:ring-[#0767ac] focus:ring-offset-2"
-            >
-              View My Projects
-              <FaArrowRight aria-hidden="true" />
-            </button>
           </div>
         </div>
       </div>

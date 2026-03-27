@@ -24,19 +24,18 @@ const SOCIAL_LINKS = [
   },
 ];
 
-// Fix 1 & 2: contact info + WhatsApp deep link
 const CONTACT_INFO = [
   {
     icon: FaEnvelope,
     label: "alanpjpnc@gmail.com",
     href: "mailto:alanpjpnc@gmail.com",
-    hoverClass: "hover:text-blue-400",
+    hoverClass: "hover:text-blue-600 dark:hover:text-blue-400",
   },
   {
     icon: FaWhatsapp,
     label: "+91 75101 89423",
     href: "https://wa.me/917510189423",
-    hoverClass: "hover:text-green-400",
+    hoverClass: "hover:text-green-600 dark:hover:text-green-400",
   },
 ];
 
@@ -44,23 +43,24 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="text-gray-400 duration-300 bg-gray-900 dark:bg-gray-950">
+    <footer className="text-gray-600 transition-colors duration-300 bg-gray-50 dark:bg-gray-950 dark:text-gray-400">
 
-      {/* ── Main footer body ── */}
+      {/* Main */}
       <div className="container px-6 py-10 mx-auto">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
 
-          {/* Brand + tagline + contact info */}
+          {/* Brand */}
           <div className="space-y-4">
             <div>
-              {/* Fix 2: updated tagline */}
-              <p className="text-lg font-bold text-white">Alan P J</p>
-              <p className="mt-1 text-sm text-gray-400">
+              <p className="text-lg font-bold text-gray-900 dark:text-white">
+                Alan P J
+              </p>
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
                 Java / Full Stack Developer · Immediate Joiner · UAE
               </p>
             </div>
 
-            {/* Fix 1: email + WhatsApp as plain-text links */}
+            {/* Contact */}
             <div className="pt-1 space-y-2">
               {CONTACT_INFO.map(({ icon: Icon, label, href, hoverClass }) => (
                 <a
@@ -68,27 +68,26 @@ const Footer = () => {
                   href={href}
                   target={href.startsWith("http") ? "_blank" : "_self"}
                   rel="noopener noreferrer"
-                  className={`flex items-center gap-2 text-sm text-gray-400 transition-colors duration-300 ${hoverClass}`}
+                  className={`flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300 ${hoverClass}`}
                 >
-                  <Icon size={14} aria-hidden="true" />
+                  <Icon size={14} />
                   {label}
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Nav links */}
-          <nav aria-label="Footer navigation" className="sm:justify-self-center">
-            <p className="mb-3 text-xs font-semibold tracking-widest text-gray-500 uppercase">
+          {/* Navigation */}
+          <nav className="sm:justify-self-center">
+            <p className="mb-3 text-xs font-semibold tracking-widest text-gray-400 uppercase dark:text-gray-500">
               Navigation
             </p>
             <ul className="space-y-2 text-sm">
               {NAV_LINKS.map((link) => (
                 <li key={link}>
-                  {/* Fix 3: explicit hover colour works in both light and dark */}
                   <a
                     href={`#${link.toLowerCase()}`}
-                    className="text-gray-400 transition-colors duration-300 hover:text-white"
+                    className="text-gray-600 dark:text-gray-400 hover:text-[#0767ac] dark:hover:text-white transition-colors duration-300"
                   >
                     {link}
                   </a>
@@ -97,9 +96,9 @@ const Footer = () => {
             </ul>
           </nav>
 
-          {/* Social links */}
+          {/* Social */}
           <div className="sm:justify-self-end">
-            <p className="mb-3 text-xs font-semibold tracking-widest text-gray-500 uppercase">
+            <p className="mb-3 text-xs font-semibold tracking-widest text-gray-400 uppercase dark:text-gray-500">
               Find me on
             </p>
             <div className="flex items-center gap-3">
@@ -109,13 +108,13 @@ const Footer = () => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={label}
-                  className={`p-2.5 text-gray-400 transition-all duration-300 rounded-lg
-                    bg-gray-800 dark:bg-gray-800
-                    ${hoverClass}
-                    focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                  className={`p-2.5 rounded-lg text-gray-600 dark:text-gray-400
+                    bg-white dark:bg-gray-800
+                    border border-gray-200 dark:border-gray-700
+                    transition-all duration-300
+                    hover:shadow-md ${hoverClass}`}
                 >
-                  <Icon size={18} aria-hidden="true" />
+                  <Icon size={18} />
                 </a>
               ))}
             </div>
@@ -124,13 +123,13 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* ── Bottom bar ── */}
-      <div className="border-t border-gray-800 dark:border-gray-700">
+      {/* Bottom */}
+      <div className="border-t border-gray-200 dark:border-gray-700">
         <div className="container flex flex-col items-center justify-between gap-2 px-6 py-4 mx-auto text-xs text-gray-500 sm:flex-row">
           <p>© {currentYear} Alan P J. All rights reserved.</p>
           <a
             href="#home"
-            className="text-gray-500 transition-colors duration-300 hover:text-white"
+            className="hover:text-[#0767ac] dark:hover:text-white transition-colors duration-300"
           >
             Back to top ↑
           </a>
