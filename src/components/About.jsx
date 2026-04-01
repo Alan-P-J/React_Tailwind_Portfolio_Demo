@@ -10,7 +10,7 @@ import {
   FaBullseye,
 } from "react-icons/fa";
 import { MdMessage } from "react-icons/md";
-import profileImg from "../assets/profile-headshot.jpeg";
+import profileImg from "/profile1.jpeg";
 
 const QUICK_FACTS = [
   {

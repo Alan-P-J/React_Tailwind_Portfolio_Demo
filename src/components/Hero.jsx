@@ -1,6 +1,6 @@
 import { forwardRef, memo } from "react";
 import { FaArrowRight, FaChevronDown, FaDownload } from "react-icons/fa";
-import profileImg from "../assets/profile-headshot.jpeg";
+import profileImg from "/profile1.jpeg";
 import { TypeAnimation } from "react-type-animation";
 
 const STATS = [

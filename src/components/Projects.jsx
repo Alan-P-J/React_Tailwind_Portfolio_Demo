@@ -6,7 +6,7 @@ import ecommerceImg from "../assets/Home.png";
 import carelinkImg from "../assets/Screenshot from 2025-07-29 14-45-41.png";
 import blockchnain from "../assets/Screenshot from 2025-10-29 14-47-50.png";
 import TodoList from "../assets/Screenshot from 2025-10-29 09-52-54.png";
-import payrollImg from "../assets/payrollImage.png";
+import payrollImg from "../assets/payrollImage1.png";
 
 // ── Categories ──
 const CATEGORIES = [
