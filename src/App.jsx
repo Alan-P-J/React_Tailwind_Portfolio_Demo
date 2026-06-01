@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 // ── Eager load — above the fold, must show instantly ──
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import ToTop from "./components/ToTop"
+import ToTop from "./components/ToTop";
 // ── Lazy load — below the fold, load only when needed ──
 const About = lazy(() => import("./components/About"));
 const Skills = lazy(() => import("./components/Skills"));
@@ -106,15 +106,14 @@ function App() {
       </Suspense>
 
       {isVisible && <ToTop></ToTop>}
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar
-        newestOnTop
-        closeOnClick
-        pauseOnHover
-        draggable
-      />
+     <ToastContainer
+  position="top-right"
+  autoClose={3500}
+  newestOnTop
+  closeOnClick
+  pauseOnHover
+  draggable
+/>
     </>
   );
 }

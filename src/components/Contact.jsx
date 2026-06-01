@@ -1,5 +1,5 @@
 import { useState, useRef, forwardRef, useCallback } from "react";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SiLeetcode } from "react-icons/si";
@@ -23,15 +23,15 @@ const CONTACT_METHODS = [
   },
   {
     icon: FaPhone,
-    label: "Phone",
-    value: "+91 7510189423 (WhatsApp available)",
+    label: "Call or WhatsApp",
+    value: "+91 7510189423",
     link: "tel:+917510189423",
     gradient: "from-green-400 to-green-600",
   },
   {
     icon: FaMapMarkerAlt,
     label: "Location",
-    value: "Kerala, India · Open to UAE",
+    value: "Kerala, India • Open to Relocation & Remote Opportunities",
     link: "https://maps.google.com/?q=Thrissur,Kerala,India",
     gradient: "from-blue-400 to-blue-600",
   },
@@ -106,14 +106,14 @@ const ContactSection = forwardRef((_, ref) => {
             setIsSubmitting(false);
             setLastSent(Date.now());
             toast.success(
-              "Thanks for reaching out! I'll get back to you shortly.",
+              "Message sent successfully. I'll get back to you soon.",
             );
             formRef.current.reset();
           },
           (error) => {
             console.error("Email failed to send:", error.text);
             setIsSubmitting(false);
-            toast.error("Something went wrong. Please try again.");
+            toast.error("Failed to send message. Please try again.");
           },
         );
     },
@@ -129,7 +129,7 @@ const ContactSection = forwardRef((_, ref) => {
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
         {/* ── Section header ── */}
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
+          <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-5xl dark:text-white">
             Get In Touch
           </h2>
           <div
@@ -137,11 +137,10 @@ const ContactSection = forwardRef((_, ref) => {
             aria-hidden="true"
           />
           <p className="max-w-2xl mx-auto text-xl text-gray-600 dark:text-gray-400">
-            Looking to hire a Java or Full Stack Developer? Let's connect and
-            discuss how I can contribute to your team.
+            Open to software engineering opportunities, backend development projects, and technical collaborations. Passionate about building scalable applications with clean architecture and modern technologies.
           </p>
-          <span className="inline-block px-4 py-1 mt-4 mb-4 text-sm font-medium text-blue-700 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
-            Open to Full-Time Opportunities
+          <span className="inline-flex items-center gap-2 px-4 py-2 mt-6 text-sm font-medium text-[#0767ac] bg-blue-50 border border-blue-200 rounded-full dark:bg-blue-950/30 dark:border-blue-900 dark:text-blue-300">
+            Available for Full-Time Opportunities
           </span>
         </div>
 
@@ -150,13 +149,15 @@ const ContactSection = forwardRef((_, ref) => {
           <div className="space-y-8">
             <div>
               <h3 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-                Let's Start a Conversation
+                Let's Build Something Meaningful
               </h3>
               <p className="leading-relaxed text-gray-600 dark:text-gray-400">
-                I'm currently open to full-time backend or full-stack developer
-                opportunities, especially roles involving Java, Spring Boot, and
-                scalable web applications. Feel free to reach out — I usually
-                respond within 24 hours.
+                I specialize in building scalable backend systems and modern web
+                applications using Java, Spring Boot, React, and SQL
+                technologies. If you're hiring for a Software Engineer, Backend
+                Developer, or Full Stack Developer role, I'd be happy to discuss
+                how my technical skills, project experience, and problem-solving
+                approach can contribute to your team.
               </p>
             </div>
 
@@ -199,8 +200,12 @@ const ContactSection = forwardRef((_, ref) => {
             {/* Social links + resume download */}
             <div>
               <h4 className="mb-4 font-semibold text-gray-900 dark:text-white">
-                Follow me on
+                Connect With Me
               </h4>
+              <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">
+                Let's connect and discuss opportunities, technology, and
+                software development.
+              </p>
               <div className="flex gap-3 mb-6">
                 {SOCIAL_LINKS.map(({ icon: Icon, label, link, color }) => (
                   <a
@@ -230,6 +235,14 @@ const ContactSection = forwardRef((_, ref) => {
           {/* ── Right: contact form ── */}
           <div className="p-8 bg-white shadow-lg h-fit dark:bg-gray-800 rounded-2xl">
             <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
+              <h4 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
+                Send a Message
+              </h4>
+
+              <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">
+                Have an opportunity or project in mind? I'd love to hear from
+                you.
+              </p>
               <div className="grid gap-6 sm:grid-cols-2">
                 <div>
                   <label htmlFor="from_name" className={LABEL_CLASSES}>
@@ -240,21 +253,21 @@ const ContactSection = forwardRef((_, ref) => {
                     id="from_name"
                     name="from_name"
                     required
-                    placeholder="Enter your name"
+                    placeholder="Your full name"
                     className={INPUT_CLASSES}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="from_email" className={LABEL_CLASSES}>
-                    Email Address *
+                    Professional Email *
                   </label>
                   <input
                     type="email"
                     id="from_email"
                     name="from_email"
                     required
-                    placeholder="your@email.com"
+                    placeholder="your.email@example.com"
                     className={INPUT_CLASSES}
                   />
                 </div>
@@ -269,7 +282,7 @@ const ContactSection = forwardRef((_, ref) => {
                   id="subject"
                   name="subject"
                   required
-                  placeholder="What's this about?"
+                  placeholder="Opportunity, Project, or Inquiry"
                   className={INPUT_CLASSES}
                 />
               </div>
@@ -283,7 +296,7 @@ const ContactSection = forwardRef((_, ref) => {
                   name="message"
                   required
                   rows={6}
-                  placeholder="Tell me about your project or just say hello..."
+                  placeholder="Tell me about the role, project, or challenge you'd like to discuss..."
                   className={`${INPUT_CLASSES} resize-none`}
                 />
               </div>
@@ -312,6 +325,9 @@ const ContactSection = forwardRef((_, ref) => {
                   </>
                 )}
               </button>
+              <p className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400">
+                Usually responds within 24 hours.
+              </p>
             </form>
           </div>
         </div>

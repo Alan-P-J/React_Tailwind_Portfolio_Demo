@@ -5,13 +5,13 @@ import { FiArrowUpRight } from "react-icons/fi";
 import ecommerceImg from "../assets/Home.png";
 import carelinkImg from "../assets/Screenshot from 2025-07-29 14-45-41.png";
 import blockchnain from "../assets/Screenshot from 2025-10-29 14-47-50.png";
-import TodoList from "../assets/Screenshot from 2025-10-29 09-52-54.png";
+import expenseFlowImg from "../assets/Screenshot from 2026-06-01 11-45-48.png";
 import payrollImg from "../assets/payrollImage1.png";
 
 // ── Categories ──
 const CATEGORIES = [
-  { id: "all",             name: "All"            },
-  { id: "fullstack",       name: "Full Stack"     },
+  { id: "all", name: "All" },
+  { id: "fullstack", name: "Full Stack" },
   { id: "machinelearning", name: "ML / Blockchain" },
 ];
 
@@ -24,41 +24,57 @@ const PROJECTS = [
     date: "Mar 2025 – Present",
     badge: "Work Experience",
     description:
-      "Led backend migration of a large-scale enterprise payroll system from .NET to Java (Spring Boot). Designed REST APIs, implemented core business logic, and optimised PostgreSQL queries handling thousands of employee records.",
+      "Contributed to the migration of an enterprise payroll and HRMS platform from .NET to Spring Boot. Developed secure REST APIs, implemented payroll workflows, and optimized PostgreSQL queries supporting large-scale employee data processing.",
     role: "Backend Developer · Payroll Migration",
     image: payrollImg,
     category: "fullstack",
     highlights: [
       "Migrated payroll engine: .NET → Spring Boot",
       "JWT-secured REST APIs for HR workflows",
-      "PostgreSQL query optimisation at scale",
+      "Optimized payroll queries for large employee datasets",
     ],
-    techStack: ["Java", "Spring Boot", "JPA/Hibernate", "PostgreSQL", "JWT", "Postman"],
+    techStack: [
+      "Java",
+      "Spring Boot",
+      "JPA/Hibernate",
+      "PostgreSQL",
+      "JWT",
+      "Postman",
+    ],
     sourceCode: null,
     liveDemo: null,
     isPrivate: true,
   },
   {
     id: 2,
-    title: "CareLink",
-    subtitle: "Healthcare Management System",
-    date: "Mar 2025",
+    title: "ExpenseFlow",
+    subtitle: "Multi-Tenant Expense Management Platform",
+    date: "2026",
     badge: "Personal Project",
     description:
-      "Built a full-stack appointment booking system from scratch — Spring Boot REST APIs with JWT auth on the backend, React dashboard on the frontend with role-based access for patients and doctors.",
-    role: null,
-    image: carelinkImg,
+      "Designed and developed a modern multi-tenant expense management platform using React and Spring Boot. Built organization-level isolation, role-based access control, expense tracking workflows, analytics dashboards, and AI-assisted development workflows to accelerate implementation and learning.",
+    role: "Full Stack Developer",
+    image: expenseFlowImg,
     category: "fullstack",
     highlights: [
-      "End-to-end: Spring Boot API + React UI",
-      "Role-based access control (patient / doctor)",
-      "JWT authentication & secure endpoints",
+      "Multi-tenant SaaS architecture",
+      "Role-based access control (RBAC)",
+      "Expense tracking & reporting workflows",
+      "AI-assisted development process",
     ],
-    techStack: ["Java", "Spring Boot", "React", "PostgreSQL", "JWT", "Git"],
-    sourceCode: "https://github.com/Alan-P-J/CareLink-using-Spring-boot",
+    techStack: [
+      "React",
+      "Java",
+      "Spring Boot",
+      "PostgreSQL",
+      "JWT",
+      "Tailwind CSS",
+    ],
+    sourceCode: "https://github.com/Alan-P-J/Smart-Expense-Tracker",
     liveDemo: null,
     isPrivate: false,
   },
+  
   {
     id: 3,
     title: "TrendNest",
@@ -103,22 +119,22 @@ const PROJECTS = [
   },
   {
     id: 5,
-    title: "To-Do List",
-    subtitle: "Task Manager with Admin Module",
-    date: "2025",
+    title: "CareLink",
+    subtitle: "Appointment Booking & Patient Management Platform",
+    date: "Mar 2025",
     badge: "Personal Project",
     description:
-      "Task management app with admin controls for assignment, tracking, and team delegation — built to sharpen vanilla JS skills and explore lightweight admin patterns without a framework.",
+      "Built a full-stack appointment booking system from scratch — Spring Boot REST APIs with JWT auth on the backend, React dashboard on the frontend with role-based access for patients and doctors.",
     role: null,
-    image: TodoList,
+    image: carelinkImg,
     category: "fullstack",
     highlights: [
-      "Admin-controlled task assignment",
-      "Team tracking & delegation flows",
-      "Vanilla JS — no framework",
+      "End-to-end: Spring Boot API + React UI",
+      "Role-based access control (patient / doctor)",
+      "JWT authentication & secure endpoints",
     ],
-    techStack: ["JavaScript", "jQuery", "CSS"],
-    sourceCode: "https://github.com/Alan-P-J/To-Do-List",
+    techStack: ["Java", "Spring Boot", "React", "PostgreSQL", "JWT", "Git"],
+    sourceCode: "https://github.com/Alan-P-J/CareLink-using-Spring-boot",
     liveDemo: null,
     isPrivate: false,
   },
@@ -201,12 +217,13 @@ const Projects = memo(
         />
 
         <div className="container relative z-10 px-4 mx-auto sm:px-6">
-
           {/* ── Section header ── */}
           <div className="text-center mb-14">
-            <span className="inline-block text-xs font-bold tracking-[0.25em] uppercase
-              text-[#0767ac] dark:text-[#4da6e8] mb-3">
-              Things I've shipped
+            <span
+              className="inline-block text-xs font-bold tracking-[0.25em] uppercase
+              text-[#0767ac] dark:text-[#4da6e8] mb-3"
+            >
+              Projects & Experience
             </span>
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
               Featured Projects
@@ -216,8 +233,9 @@ const Projects = memo(
               aria-hidden="true"
             />
             <p className="max-w-xl mx-auto text-base text-gray-500 dark:text-gray-400">
-              From enterprise payroll systems to blockchain platforms — real
-              problems, real code, real learning.
+              Building scalable backend systems, full-stack applications, and
+              enterprise solutions using Java, Spring Boot, React, and modern
+              technologies.
             </p>
           </div>
 
@@ -280,8 +298,10 @@ const Projects = memo(
                     {project.badge}
                   </span>
                   {/* Date top-right */}
-                  <span className="absolute top-3 right-3 text-xs font-medium
-                    px-2.5 py-1 rounded-full bg-black/40 text-white backdrop-blur-sm">
+                  <span
+                    className="absolute top-3 right-3 text-xs font-medium
+                    px-2.5 py-1 rounded-full bg-black/40 text-white backdrop-blur-sm"
+                  >
                     {project.date}
                   </span>
                 </div>
@@ -299,8 +319,10 @@ const Projects = memo(
 
                     {/* Role */}
                     {project.role && (
-                      <p className="mb-3 text-xs font-bold text-[#0767ac] dark:text-[#4da6e8]
-                        uppercase tracking-wide">
+                      <p
+                        className="mb-3 text-xs font-bold text-[#0767ac] dark:text-[#4da6e8]
+                        uppercase tracking-wide"
+                      >
                         {project.role}
                       </p>
                     )}
@@ -347,8 +369,10 @@ const Projects = memo(
                   {/* Footer */}
                   <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
                     {project.isPrivate ? (
-                      <div className="flex items-center justify-center gap-2 py-1.5
-                        text-xs text-gray-400 dark:text-gray-500">
+                      <div
+                        className="flex items-center justify-center gap-2 py-1.5
+                        text-xs text-gray-400 dark:text-gray-500"
+                      >
                         <FaLock size={10} aria-hidden="true" />
                         Private repository · Company project
                       </div>
@@ -415,7 +439,6 @@ const Projects = memo(
               </button>
             </div>
           )}
-
         </div>
       </section>
     );

@@ -8,19 +8,16 @@ const SOCIAL_LINKS = [
     icon: FaGithub,
     href: "https://github.com/Alan-P-J",
     label: "GitHub",
-    hoverClass: "hover:text-white hover:bg-gray-700",
   },
   {
     icon: FaLinkedin,
     href: "https://www.linkedin.com/in/alan-p-j-5747a1247/",
     label: "LinkedIn",
-    hoverClass: "hover:text-white hover:bg-blue-600",
   },
   {
     icon: SiLeetcode,
     href: "https://leetcode.com/u/K28night/",
     label: "LeetCode",
-    hoverClass: "hover:text-white hover:bg-yellow-500",
   },
 ];
 
@@ -29,13 +26,11 @@ const CONTACT_INFO = [
     icon: FaEnvelope,
     label: "alanpjpnc@gmail.com",
     href: "mailto:alanpjpnc@gmail.com",
-    hoverClass: "hover:text-blue-600 dark:hover:text-blue-400",
   },
   {
     icon: FaWhatsapp,
     label: "+91 75101 89423",
     href: "https://wa.me/917510189423",
-    hoverClass: "hover:text-green-600 dark:hover:text-green-400",
   },
 ];
 
@@ -62,15 +57,22 @@ const Footer = () => {
 
             {/* Contact */}
             <div className="pt-1 space-y-2">
-              {CONTACT_INFO.map(({ icon: Icon, label, href, hoverClass }) => (
+              {CONTACT_INFO.map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
                   href={href}
                   target={href.startsWith("http") ? "_blank" : "_self"}
                   rel="noopener noreferrer"
-                  className={`flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300 ${hoverClass}`}
+                  className="group flex items-center gap-2 px-2 py-1.5 rounded-lg
+                    text-sm text-gray-600 dark:text-gray-400
+                    transition-all duration-300
+                    hover:text-blue-500 dark:hover:text-blue-400
+                    hover:bg-blue-50 dark:hover:bg-blue-900/30"
                 >
-                  <Icon size={14} />
+                  <Icon
+                    size={14}
+                    className="transition-transform duration-300 group-hover:scale-110"
+                  />
                   {label}
                 </a>
               ))}
@@ -82,14 +84,31 @@ const Footer = () => {
             <p className="mb-3 text-xs font-semibold tracking-widest text-gray-400 uppercase dark:text-gray-500">
               Navigation
             </p>
+
             <ul className="space-y-2 text-sm">
               {NAV_LINKS.map((link) => (
                 <li key={link}>
                   <a
                     href={`#${link.toLowerCase()}`}
-                    className="text-gray-600 dark:text-gray-400 hover:text-[#0767ac] dark:hover:text-white transition-colors duration-300"
+                    className="group relative inline-flex items-center gap-2 px-2 py-1.5 rounded-lg
+                      text-gray-500 dark:text-gray-400
+                      transition-all duration-300
+                      hover:text-blue-500 dark:hover:text-blue-400
+                      hover:bg-blue-50 dark:hover:bg-blue-900/30"
                   >
-                    {link}
+                    {/* Dot indicator */}
+                    <span className="w-1 h-1 transition-all duration-300 scale-0 bg-blue-500 rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-100"
+                    />
+
+                    {/* Text */}
+                    <span className="relative">
+                      {link}
+                      {/* Underline */}
+                      <span className="absolute left-0 -bottom-0.5 w-0 h-[1px]
+                        bg-blue-500 dark:bg-blue-400
+                        transition-all duration-300 group-hover:w-full"
+                      />
+                    </span>
                   </a>
                 </li>
               ))}
@@ -101,20 +120,28 @@ const Footer = () => {
             <p className="mb-3 text-xs font-semibold tracking-widest text-gray-400 uppercase dark:text-gray-500">
               Find me on
             </p>
+
             <div className="flex items-center gap-3">
-              {SOCIAL_LINKS.map(({ icon: Icon, href, label, hoverClass }) => (
+              {SOCIAL_LINKS.map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-2.5 rounded-lg text-gray-600 dark:text-gray-400
+                  className="group p-2.5 rounded-lg
+                    text-gray-600 dark:text-gray-400
                     bg-white dark:bg-gray-800
                     border border-gray-200 dark:border-gray-700
                     transition-all duration-300
-                    hover:shadow-md ${hoverClass}`}
+                    hover:-translate-y-1 hover:scale-105
+                    hover:text-blue-500 dark:hover:text-blue-400
+                    hover:bg-blue-50 dark:hover:bg-blue-900/30
+                    hover:border-blue-200 dark:hover:border-blue-700"
                 >
-                  <Icon size={18} />
+                  <Icon
+                    size={18}
+                    className="transition-transform duration-300 group-hover:scale-110"
+                  />
                 </a>
               ))}
             </div>
@@ -126,13 +153,16 @@ const Footer = () => {
       {/* Bottom */}
       <div className="border-t border-gray-200 dark:border-gray-700">
         <div className="container flex flex-col items-center justify-between gap-2 px-6 py-4 mx-auto text-xs text-gray-500 sm:flex-row">
+
           <p>© {currentYear} Alan P J. All rights reserved.</p>
+
           <a
             href="#home"
-            className="hover:text-[#0767ac] dark:hover:text-white transition-colors duration-300"
+            className="px-2 py-1 transition-all duration-300 rounded-lg hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30"
           >
             Back to top ↑
           </a>
+
         </div>
       </div>
 
